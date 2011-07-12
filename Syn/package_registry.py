@@ -17,6 +17,7 @@ import Syn.exceptions
 #  +-> package_name
 #         +-> installed_status : foo
 #         +-> version          : 0.0
+#         +-> local            : 1
 #         +-> deps
 #               +-> foo
 #               +-> bar
@@ -29,7 +30,6 @@ class package_registry:
 			path = U.SLASH_TOP_LEVEL_DIR
 		path = path + "/" + R.DATABASE_FILE
 		self.__loaddb(path)
-
 	def __loaddb(self, path):
 		try:
 			self.ff = flatfile.json_bfile(path)
@@ -40,7 +40,6 @@ class package_registry:
 		if payload.val():
 			cpay = self.ff.getContent()
 			cpay[package] = payload.format()
-
 	def getPackage(self, package):
 		working_db = self.ff.getContent()
 		try:

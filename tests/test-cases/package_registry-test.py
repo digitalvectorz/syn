@@ -11,7 +11,7 @@ try:
 except Syn.exceptions.PackageNotFoundException as e:
 	print e
 
-bpatr = Syn.package_registry.package_attrs("bash", 4.3, ["a", "b"])
+bpatr = Syn.package_registry.package_attrs("bash", 4.3, 1, ["a", "b"])
 pkgdb.setPackage("bash",bpatr)
 
 try:

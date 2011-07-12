@@ -4,20 +4,21 @@ import Syn.policy.package_registry as R
 import Syn.policy.universal        as U
 
 class package_attrs:
-	def __init__(self, package, version, deps):
-		self._pkg = package
-		self._ver = version
-		self._dep = deps
+	def __init__(self, package, version, vlocal, deps):
+		self._pkg    = package
+		self._ver    = version
+		self._vlocal = vlocal
+		self._dep    = deps
 	def val(self):
 		try:
 			x = self._pkg
 			y = self._ver
 			z = self._dep
-			if x != "" and y != "" and type(z) == list:
+			a = self._vlocal
+			if x != "" and y != "" and a != "" and type(z) == list:
 				return True
 		except ValueError as e:
 			pass
-
 		return False
 	def format(self):
 		if not self.val():
@@ -25,16 +26,17 @@ class package_attrs:
 		ret = {
 			R.NAME_ATTR : self._pkg,
 			R.VERS_ATTR : self._ver,
-			R.DEPS_ATTR : self._dep
+			R.DEPS_ATTR : self._dep,
+			R.LOCL_ATTR : self._vlocal
 		}
 		return ret
-
 class package:
 	def __init__(self, attrs):
 		if type(attrs) == dict:
 			attrs = package_attrs(
 				attrs[R.NAME_ATTR],
 				attrs[R.VERS_ATTR],
+				attrs[R.LOCL_ATTR],
 				attrs[R.DEPS_ATTR]
 			)
 		if attrs.val() == False:
