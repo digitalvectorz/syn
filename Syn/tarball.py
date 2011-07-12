@@ -21,5 +21,6 @@ class tarball:
 
 	def extractall(self, path = "."):
 		self.tarball_target.extractall(path)
+
 	def close(self):
 		self.tarball_target.close()
