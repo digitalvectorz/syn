@@ -9,10 +9,15 @@ class bfile:
 		l.l(l.PEDANTIC,"Using file: %s" % fil)
 		try:
 			self.update()
+			l.l(l.PEDANTIC,"existing file loaded: %s" % fil)
 		except IOError as e:
 			# OK, we need to create it.
-			self.setContent("")
-			self.write()
+			self.blankFile()
+
+	def blankFile(self):
+		l.l(l.PEDANTIC,"creating blank file: %s" % self.file)
+		self.setContent("")
+		self.write()
 
 	def update(self):
 		l.l(l.PEDANTIC,"Updating file: %s" % self.file)
