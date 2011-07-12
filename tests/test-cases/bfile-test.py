@@ -24,3 +24,5 @@ compare_content_2 = tfile.getContent() # complex read test
 
 print "Asserting file re-read"
 assert test_content == compare_content_2
+
+
