@@ -3,7 +3,11 @@
 
 import Syn.tarball
 
-test_tarball = "test-1.0.tar.gz"
+test_tarball = "test-0.1.tar.gz"
+test_root    = "test-0.1"
 
 t = Syn.tarball.tarball(test_tarball)
+root = t.getRootFolder()
 
+print "asserting root is the same as the read root"
+assert test_root == root
