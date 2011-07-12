@@ -6,6 +6,10 @@ import Syn.json_bfile as flatfile
 import Syn.policy.package_registry as R
 import Syn.policy.universal        as U
 
+from Syn.package import package_attrs
+
+import Syn.package
+
 import Syn.exceptions
 
 #
@@ -40,33 +44,9 @@ class package_registry:
 	def getPackage(self, package):
 		working_db = self.ff.getContent()
 		try:
-			return working_db[package]
+			pkg_data = working_db[package]
+			ret = Syn.package.package(pkg_data)
+			return ret
 		except KeyError as e:
 			raise Syn.exceptions.PackageNotFoundException("No such package: %s" % package)
-
-class package_attrs:
-	def __init__(self, package, version, deps):
-		self._pkg = package
-		self._ver = version
-		self._dep = deps
-	def val(self):
-		try:
-			x = self._pkg
-			y = self._ver
-			z = self._dep
-			if x != "" and y != "" and type(z) == list:
-				return True
-		except ValueError as e:
-			pass
-
-		return False
-	def format(self):
-		if not self.val():
-			raise Syn.exceptions.SynFormatException("The fuck is this?")
-		ret = {
-			R.NAME_ATTR : self._pkg,
-			R.VERS_ATTR : self._ver,
-			R.DEPS_ATTR : self._dep
-		}
-		return ret
 

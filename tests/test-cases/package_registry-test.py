@@ -17,6 +17,7 @@ pkgdb.setPackage("bash",bpatr)
 try:
 	f = pkgdb.getPackage("bash")
 	print f
+	pkgdb.setPackage("bash", f)
 except Syn.exceptions.PackageNotFoundException as e:
 	assert True == False
 
