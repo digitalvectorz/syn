@@ -15,7 +15,6 @@ class json_bfile(Syn.bfile.bfile):
 		l.l(l.PEDANTIC,"Updating JSON file: %s" % self.file)
 		f = gzip.open(self.file, 'rb')
 		self.setContent(json.loads(f.read()))
-		# print "Loaded: " + str(self.getContent())
 		f.close()
 
 	def write(self):
