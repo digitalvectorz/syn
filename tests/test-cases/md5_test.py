@@ -30,15 +30,16 @@ def delt(arg1,arg2):
 
 print "testing md5"
 print t.md5()
-#file_id = "md5sums-tarball.txt"
 
-test_dict={'md5test/bar':'5bf487da0233682aa1b52bccbc530ab8',  
-	   'md5test/baz':'86cdc6230a4b73b4aa606f27d178979e',
-	   'md5test/foo':'26bb73556ceb32a5df30b733c5355ee5'}  
+test_dict = {
+	'md5test/bar':'5bf487da0233682aa1b52bccbc530ab8',
+	'md5test/baz':'86cdc6230a4b73b4aa606f27d178979e',
+	'md5test/foo':'26bb73556ceb32a5df30b733c5355ee5'
+}
 
 
-assert delt(t.md5(), test_dict) == {}	
+assert delt(t.md5(), test_dict) == {}
 
-print "md5 works"	
+print "md5 works"
 
 

@@ -26,20 +26,16 @@ class tarball:
 		self.tarball_target.close()
 
 	def md5(self):
-		returnme={}
+		returnme = {}
 		
 		for member in self.tarball_target.getmembers():
-		   if(member.isdir()==False):
-			filename=self.tarball_target.extractfile(member)
-			m=hashlib.md5()
-			while True:
-				hash=filename.read(1024)
-				if not hash:
-				  break
-				m.update(hash)
-			returnme[member.name]=m.hexdigest()	
-		
-		
+			if member.isdir() == False:
+				filename = self.tarball_target.extractfile(member)
+				m = hashlib.md5()
+				while True:
+					hash = filename.read(1024)
+					if not hash:
+						break
+					m.update(hash)
+				returnme[member.name] = m.hexdigest()
 		return returnme
-			
-				
