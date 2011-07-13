@@ -2,7 +2,7 @@
 
 import Syn.log
 import tarfile
-
+import hashlib
 import os.path
 
 class tarball:
@@ -24,3 +24,22 @@ class tarball:
 
 	def close(self):
 		self.tarball_target.close()
+
+	def md5(self):
+		returnme={}
+		
+		for member in self.tarball_target.getmembers():
+		   if(member.isdir()==False):
+			filename=self.tarball_target.extractfile(member)
+			m=hashlib.md5()
+			while True:
+				hash=filename.read(1024)
+				if not hash:
+				  break
+				m.update(hash)
+			returnme[member.name]=m.hexdigest()	
+		
+		
+		return returnme
+			
+				
