@@ -2,3 +2,6 @@
 
 TOP_LEVEL_DIR          =  "syn"
 SLASH_TOP_LEVEL_DIR    =  "/" + TOP_LEVEL_DIR
+
+TMP_ROOT               = "/tmp/syn"
+TMP_WORKDIR =          = TMP_ROOT + "/temp-space
