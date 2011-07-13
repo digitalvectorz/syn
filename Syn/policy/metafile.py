@@ -27,7 +27,7 @@ META_NEEDED = {
 }
 
 META_GOODTOHAVE = {
-	"upstream-vcs"        : 1
+	"upstream-vcs" : 1
 }
 
 LICENSE_CLEAN = [
