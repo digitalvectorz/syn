@@ -1,1 +1,42 @@
-{}
+{
+    "maintainer": {
+        "email" : "jhacker@example.com",
+        "name"  : "John Q. Hacker"
+    },
+    "license" : {
+        "*" : {
+           "terms"  : "GPL-3",
+           "author" : "Joe Shmo, et. al"
+       }
+        "src/file1.c" : {
+           "terms"  : "BSD-3",
+           "author" : "Joe Shmo, et. al"
+       }
+    },
+    "syn-policy-version" : 1,
+    "package" : "foo",
+    "version" : "3.2",
+    "local-version" : 1,
+    "package-type" : "CLI",
+    "deps" : [
+        "pkg1",
+        "pkg2",
+        "pkg3"
+    ],
+    build-deps : [
+        "a",
+        "b",
+        "c"
+    ],
+    "wget-url" : "http://foosdomain.tld/download/foo-n.m.tar.gz",
+    "syn-vcs" : {
+        "type" : "git",
+        "url" : "git://domain.tld/syn/foo.git",
+        "browse" : "http://git.domain.tld/?a=summary&p=foo"
+    },
+    "upstream-vcs" : {
+        "type" : "svn",
+        "url" : "http://foosdomain.tld/svn/foo",
+        "browse" : "http://svn.foosdomain.tld/foo"
+    }
+}
