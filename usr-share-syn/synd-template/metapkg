@@ -8,10 +8,6 @@
            "terms"  : "GPL-3",
            "author" : "Joe Shmo, et. al"
        }
-        "src/file1.c" : {
-           "terms"  : "BSD-3",
-           "author" : "Joe Shmo, et. al"
-       }
     },
     "syn-policy-version" : 1,
     "package" : "foo",
