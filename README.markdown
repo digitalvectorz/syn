@@ -1,7 +1,7 @@
 Syn Package Manager
 =====================
 
-     Hi. This is Syn. Syn's a package manager. It's written in Python, and focused on modern, compact and minimal design. It does what it should, and it gets out of your way. Tons of concepts were shamlessly taken from Debian's dpkg, but with a few modern twists. 
+Hi. This is Syn. Syn's a package manager. It's written in Python, and focused on modern, compact and minimal design. It does what it should, and it gets out of your way. Tons of concepts were shamlessly taken from Debian's dpkg, but with a few modern twists. 
 
 Syn is not for people who want something stable and time tested, dpkg is a much better choice for that. Syn's devlopers love building things up from scratch, so feel free to use Syn how you see fit. Syn's flagship Distro, Synnamon, is not yet ready for use. There's a lot to consider. 
 
