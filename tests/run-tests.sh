@@ -16,4 +16,4 @@ for x in $TSTS; do
 done 
 
 rm *.testdb
-rm test-0.1 -rf
+rm -rf test-0.1
