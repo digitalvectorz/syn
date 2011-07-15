@@ -8,3 +8,7 @@ Syn is not for people who want something stable and time tested, dpkg is a much 
 As always, patches are more then welcome (they're encouraged), and will be rewarded with good tidings from the Developers. If you plan to send a pull request or a format-patch, please rebase and squash all commits into logical chunks.
 
 Syn is GNU GPL Free and Open source. Authors can be found in the AUTHORS file.
+
+To get a full list of all commiters:
+
+$ git log | grep Author | sort | uniq | sed s/Author:\ //g
