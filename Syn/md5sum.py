@@ -44,13 +44,10 @@ def md5sumwd(check):
 			ret[path + "/" + f] = md5sum(path + "/" + f)
 	return ret
 
-def makejsonbfile(filepath):
-	
-<<<<<<< HEAD
-	file_id ="write-file"
-=======
+def makejsonbfile(filepath, file_id):
+
 	file_id = "write_file"
->>>>>>> 0cf8cf0feadb170edf657398b999a3207febb6f3
+
 	ret = md5sumwd(filepath)
 	jbfile = Syn.json_bfile.json_bfile(file_id)
 	jbfile.setContent(ret)
@@ -59,7 +56,7 @@ def makejsonbfile(filepath):
 	return jbfile
 #verifies that a dir and a json_bfile's contents are the same
 def verify(filepath1,filepath2):
-<<<<<<< HEAD
+
 	
 	try: 
 		assert os.path.isdir(filepath2)
@@ -74,10 +71,6 @@ def verify(filepath1,filepath2):
 	file2 = makejsonbfile(filepath2)
 
 	return delt.delt(filepath1.getContent(),file2.getContent())=={}
-=======
-	file2 = makejsonbfile(filepath2)
-	
-	return delt.delt(filepath1.getContent(),file2.getContent())=={}
-	
 
->>>>>>> 0cf8cf0feadb170edf657398b999a3207febb6f3
+
+
