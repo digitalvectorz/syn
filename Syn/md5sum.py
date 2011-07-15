@@ -46,8 +46,6 @@ def md5sumwd(check):
 
 def makejsonbfile(filepath, file_id):
 
-	file_id = "write_file"
-
 	ret = md5sumwd(filepath)
 	jbfile = Syn.json_bfile.json_bfile(file_id)
 	jbfile.setContent(ret)
@@ -68,7 +66,7 @@ def verify(filepath1,filepath2):
 	except:
 		print "Enter a json_bfile for the first argument"
 
-	file2 = makejsonbfile(filepath2)
+	file2 = makejsonbfile(filepath2,"file2")
 
 	return delt.delt(filepath1.getContent(),file2.getContent())=={}
 
