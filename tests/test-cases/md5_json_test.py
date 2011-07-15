@@ -6,12 +6,9 @@ import Syn.common
 import os.path
 import delt
 
-cur_dir = Syn.common.getcwd()
 
-
-test_dir = os.path.relpath("md5json",cur_dir)
-
-
+test_dir = Syn.common.getRelativePath("md5json")
+print "test dir", test_dir
 test_dict = {
 	"md5json/iamadur/iamasubfile"  : "bf27e69237a4ad56e9589091c47bbc23",
 	"md5json/iamafile1"            : "628bcee1e2cf5ae134866c5683631ff0",
@@ -19,7 +16,14 @@ test_dict = {
 	"md5json/iamafile3"            : "58d5cb7865af03f2f7aeede04ef6acde"
 }
 
-result = Syn.md5sum.makejsonbfile(test_dir)
+result = Syn.md5sum.makejsonbfile(test_dir,"write_file")
+
+
 compare_content = result.getContent()
 
 assert delt.delt(compare_content, test_dict) == {}
+
+assert Syn.md5sum.verify(result,test_dir)
+test_dir2 = Syn.common.getRelativePath("synd")
+
+assert Syn.md5sum.verify(result,test_dir2)==False

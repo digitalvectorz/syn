@@ -2,7 +2,7 @@ import Syn.json_bfile
 import Syn.bfile
 import hashlib
 import os.path
-
+import delt
 
 #Remaking of the old verficiation md5sum function.
 def md5sum(path):
@@ -44,12 +44,31 @@ def md5sumwd(check):
 			ret[path + "/" + f] = md5sum(path + "/" + f)
 	return ret
 
-def makejsonbfile(filepath):
-	
-	file_id = "json_bfile-testjson.testdb"
+def makejsonbfile(filepath, file_id):
+
 	ret = md5sumwd(filepath)
 	jbfile = Syn.json_bfile.json_bfile(file_id)
 	jbfile.setContent(ret)
 	jbfile.write()
 	
 	return jbfile
+#verifies that a dir and a json_bfile's contents are the same
+def verify(filepath1,filepath2):
+
+	
+	try: 
+		assert os.path.isdir(filepath2)
+	except:
+		print "Enter a file path in the second arg"
+	try:
+	
+	 	assert type(filepath1) is Syn.json_bfile
+	except:
+		print "Enter a json_bfile for the first argument"
+
+	file2 = makejsonbfile(filepath2,"file2")
+
+	return delt.delt(filepath1.getContent(),file2.getContent())=={}
+
+
+
