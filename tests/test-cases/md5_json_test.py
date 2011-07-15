@@ -10,7 +10,11 @@ cur_dir = Syn.common.getcwd()
 
 
 test_dir = os.path.relpath("md5json",cur_dir)
-
+<<<<<<< HEAD
+#test_dir2 = os.path.relpath("md5json2",cur_dir)
+=======
+test_dir2 = os.path.relpath("md5json2",cur_dir)
+>>>>>>> 0cf8cf0feadb170edf657398b999a3207febb6f3
 
 test_dict = {
 	"md5json/iamadur/iamasubfile"  : "bf27e69237a4ad56e9589091c47bbc23",
@@ -23,3 +27,12 @@ result = Syn.md5sum.makejsonbfile(test_dir)
 compare_content = result.getContent()
 
 assert delt.delt(compare_content, test_dict) == {}
+
+assert Syn.md5sum.verify(result,test_dir)
+<<<<<<< HEAD
+
+test_dir2 = os.path.relpath("synd",cur_dir)
+
+assert Syn.md5sum.verify(result,test_dir2)==False
+=======
+>>>>>>> 0cf8cf0feadb170edf657398b999a3207febb6f3
