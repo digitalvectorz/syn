@@ -5,14 +5,14 @@ TSTS=`ls test-cases | grep test`
 echo "" > test.log
 
 for x in $TSTS; do
-	echo $x
+	echo -n "$x"
 	./test-cases/$x >> test.log
 	ret=$?
 	if [ $ret -ne 0 ]; then
-		echo "  FAIL!"
+		echo "	[ [31mFAIL![0m ]"
 		FAIL_FLIP=Fsac
 	else
-		echo "  OK"
+		echo "	[ [34mOK[0m ]"
 	fi
 done 
 
