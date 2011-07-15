@@ -7,85 +7,44 @@ class SynException(Exception):
 		return repr(self.value)
 
 class SynDirectoryFailure(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class SynFormatException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class ArchiveNotFoundException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class InvalidJSONException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class InvalidArchiveException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class NotAnArchiveException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class FileNotPresentException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class BuildFailureException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class MutexException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class PackageNotFoundException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class ConflictException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class PackageInstalledException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class PackageNotinstalledException(SynException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
 
 class PackageUninstalledException(PackageNotinstalledException):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+	pass
+
