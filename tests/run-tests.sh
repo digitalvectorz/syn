@@ -10,6 +10,7 @@ for x in $TSTS; do
 	ret=$?
 	if [ $ret -ne 0 ]; then
 		echo "  FAIL!"
+		FAIL_FLIP=Fsac
 	else
 		echo "  OK"
 	fi
@@ -17,3 +18,8 @@ done
 
 rm *.testdb
 rm -rf test-0.1
+
+if [ "x$FAIL_FLIP" == "x" ]; then
+	echo "No failures. Removing log."
+	rm test.log
+fi
