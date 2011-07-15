@@ -1,8 +1,8 @@
 #!/usr/bin/make -f
 
 configure:
-	$(S_CONFIGURE) $(S_CONFIGURE_ARGS)
+	@$(S_CONFIGURE) $(S_CONFIGURE_ARGS)
 build:
-	$(S_BUILD) $(S_BUILD_ARGS)
+	@$(S_BUILD) $(S_BUILD_FLAGS)
 stage:
-	$(S_STAGE) $(S_STAGE_ARGS)
+	@$(S_STAGE) $(S_STAGE_FLAGS)

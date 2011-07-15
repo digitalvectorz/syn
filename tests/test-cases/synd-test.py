@@ -21,3 +21,15 @@ for x in S.BUILD_ENV_KEYS:
 		print "Fuck this"
 		assert True == False
 
+A = Syn.synd.runStage("configure")
+B = Syn.synd.runStage("build")
+C = Syn.synd.runStage("stage")
+
+print "Ensuring output tests match"
+print A, B, C
+
+assert A == "configure"
+assert B == "make -j3"
+assert C == "make install"
+
+print "Awesome"

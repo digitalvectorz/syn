@@ -2,6 +2,7 @@
 
 import Syn.policy.universal as U
 import Syn.log
+import os.path
 import time
 import os
 
@@ -11,6 +12,9 @@ def getTempLocation():
 	timestamp = time.time()
 	unpack_dir = U.TMP_WORKDIR + str(timestamp) + "/"
 	return unpack_dir
+
+def getcwd():
+	return os.path.abspath(os.getcwd())
 
 def putenv(key, value):
 	Syn.log.l(Syn.log.VERBOSE, "%s = %s" % (key, value))

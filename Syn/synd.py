@@ -5,11 +5,24 @@ import Syn.exceptions
 import Syn.json_file
 import Syn.common
 import Syn.log
+import os.path
+import os
+
+def runStage(Stage, syndRoot = "./"):
+	bldfile = syndRoot + S.SOURCE_DIRECTORY + "/" + S.BUILDFILE
+	[ status, output ] = Syn.common.run("./" + bldfile + " " + Stage)
+	return output
 
 def loadEnv():
 	envfile = S.SOURCE_DIRECTORY + "/" + S.ENVFILE
 	env = Syn.json_file.json_file(envfile)
 	envdict = env.getContent()
+
+	cwd = Syn.common.getcwd()
+
+	destdir = cwd + "/" + S.STAGE_DIR
+	Syn.common.putenv(S.DESTDIR, destdir)
+
 	for x in S.BUILD_ENV_KEYS:
 		try:
 			val = envdict[x]
