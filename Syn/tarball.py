@@ -10,6 +10,7 @@ class tarball:
 		self.tarball = tarball
 		self.tarball_target = tarfile.open(tarball, 'r')
 		Syn.log.l(Syn.log.VERBOSE, "attempting to load %s" % tarball )
+		self.verify()
 
 	def getRootFolder(self):
 		members = self.tarball_target.getmembers()
@@ -25,12 +26,18 @@ class tarball:
 	def close(self):
 		self.tarball_target.close()
 
+	def verify():
+		pass
+
+	def readMember(self, member):
+		filename = self.tarball_target.extractfile(member)
+		return filename
+
 	def md5(self):
 		returnme = {}
-		
 		for member in self.tarball_target.getmembers():
 			if member.isdir() == False:
-				filename = self.tarball_target.extractfile(member)
+				filename = self.readMember(member)
 				m = hashlib.md5()
 				while True:
 					hash = filename.read(1024)
