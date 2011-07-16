@@ -1,4 +1,4 @@
-# GNU GPL-3, RPM
+# Copyright 2011 (c) GNU GPL-3+, Ryan Maloney <rpm5779@rit.edu>
 
 import Syn.json_bfile
 import Syn.bfile
