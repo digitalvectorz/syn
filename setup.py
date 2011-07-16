@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+from Syn import __appname__, __version__
+
 import os
 from os.path import join
 from distutils.core import setup
@@ -21,8 +24,8 @@ usrshare = fucking_recusion_how_does_it_work_not_here()
 print usrshare
 
 setup(
-	name       = 'syn',
-	version    = '3.0',
+	name       = __appname__,
+	version    = __version__,
 	packages   = [ 'Syn', 'Syn.policy' ],
 	data_files = usrshare
 )
