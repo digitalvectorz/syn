@@ -19,7 +19,7 @@ def md5sum(path):
 			break
 		m.update(d)
 	ret = m.hexdigest()
-return ret
+	return ret
 
 def md5sumwd(check):
 	ret = {}

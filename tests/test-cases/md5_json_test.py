@@ -16,14 +16,14 @@ test_dict = {
 	"md5json/iamafile3"            : "58d5cb7865af03f2f7aeede04ef6acde"
 }
 
-result = Syn.md5sum.makejsonbfile(test_dir,"write_file")
+result = Syn.md5sum.makemd5sumfile(test_dir,"write_file")
 
 
 compare_content = result.getContent()
 
 assert delt.delt(compare_content, test_dict) == {}
 
-assert Syn.md5sum.verify(result,test_dir)
+assert Syn.md5sum.verify("write_file",test_dir) == {}
 test_dir2 = Syn.common.getRelativePath("synd")
 
-assert Syn.md5sum.verify(result,test_dir2)==False
+assert (Syn.md5sum.verify("write_file",test_dir2)=={}) == False
