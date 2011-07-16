@@ -26,7 +26,7 @@ class tarball:
 	def close(self):
 		self.tarball_target.close()
 
-	def verify():
+	def verify(self):
 		pass
 
 	def readMember(self, member):
