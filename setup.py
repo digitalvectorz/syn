@@ -21,7 +21,6 @@ def fucking_recusion_how_does_it_work_not_here():
 	return ret
 
 usrshare = fucking_recusion_how_does_it_work_not_here()
-print usrshare
 
 setup(
 	name       = __appname__,
