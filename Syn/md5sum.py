@@ -36,7 +36,7 @@ def md5sumwd(check):
 			ret[path + "/" + f] = md5sum(path + "/" + f)
 	return ret
 
-def makeJSONBFile(filepath, file_id):
+def mkmd5File(filepath, file_id):
 
 	ret = md5sumwd(filepath)
 	jbfile = Syn.json_bfile.json_bfile(file_id)
