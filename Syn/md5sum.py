@@ -49,14 +49,13 @@ def verify(filepath1,filepath2):
 
 	
 	try: 
-		os.path.isdir(filepath2)
-		type(filepath1) is Syn.json_bfile
+		file2 = makejsonbfile(filepath2,"file2")
+		d=delt.delt(filepath1.getContent(),file2.getContent())=={}
+
 	except KeyError as e:
 		raise Syn.exceptions.SynFormatException(str(e)):
-	
-	file2 = makejsonbfile(filepath2,"file2")
 
-	return delt.delt(filepath1.getContent(),file2.getContent())=={}
+	return d
 
 
 
