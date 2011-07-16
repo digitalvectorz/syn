@@ -2,7 +2,7 @@
 # Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
 
 import Syn.source_tarball
-
+import Syn.exceptions
 
 stb = Syn.source_tarball.source_tarball("test-1.0.syn.tar.gz")
 
