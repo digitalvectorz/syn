@@ -57,15 +57,21 @@ def loadEnv():
 def build(synball):
 	src = Syn.source_tarball.source_tarball(synball)
 	rf = src.getRootFolder()
+	# test if directory exists and fail.
 	Syn.log.l(Syn.log.PEDANTIC,"Loading tarball %s with root %s" % (synball, rf))
 	src.extractall()
 
 	upstream_tarball = src.upstream_tarball_id()
 
-	tb =Syn.tarball.tarball(upstream_tarball)
+	tb = Syn.tarball.tarball(upstream_tarball)
 	rf_us = tb.getRootFolder()
 	if rf_us != rf:
 		Syn.log.l(Syn.log.CRITICAL,"Fuck, upstream root directory and synd root are not the same. ABORT!")
 		Syn.log.l(Syn.log.CRITICAL," Expected: %s" % rf)
 		Syn.log.l(Syn.log.CRITICAL,"      Got: %s" % rf_us)
 		raise Syn.exceptions.SynFormatException("Fuck'n syn directory does not match")
+	tb.extractall()
+
+	Syn.sh.cd(rf)
+	print runStage("configure")
+
