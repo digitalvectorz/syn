@@ -22,6 +22,7 @@ def putenv(key, value):
 
 def run(cmd):
 	return commands.getstatusoutput(cmd)
+
 def getRelativePath(dirname):
 	cur_dir = Syn.common.getcwd()
 	test_dir = os.path.relpath(dirname,cur_dir)

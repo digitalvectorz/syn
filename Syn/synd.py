@@ -13,6 +13,11 @@ def runStage(Stage, syndRoot = "./"):
 	[ status, output ] = Syn.common.run("./" + bldfile + " " + Stage)
 	return output
 
+def packageSynd():
+	wdir = Syn.common.getcwd()
+	package = os.path.basename(wdir)
+	Syn.log.l(Syn.log.PEDANTIC,"Found package top-level as: %s" % package)
+
 def loadEnv():
 	envfile = S.SOURCE_DIRECTORY + "/" + S.ENVFILE
 	env = Syn.json_file.json_file(envfile)
@@ -37,3 +42,4 @@ def loadEnv():
 			Syn.common.putenv(x, combined_val)
 		else:
 			Syn.common.putenv(x, val)
+

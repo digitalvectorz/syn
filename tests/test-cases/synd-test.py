@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
 
+import Syn.sh
 import Syn.synd
 import Syn.common
 import Syn.exceptions
+import Syn.source_tarball
 import Syn.policy.source_package as S
 
 try:
@@ -32,4 +34,7 @@ assert A == "configure"
 assert B == "make -j3"
 assert C == "make install"
 
-print "Awesome"
+Syn.source_tarball.source_tarball("test-1.0.syn.tar.gz").extractall()
+
+Syn.sh.cd("test-1.0")
+Syn.synd.packageSynd()
