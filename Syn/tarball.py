@@ -12,6 +12,14 @@ class tarball:
 		Syn.log.l(Syn.log.VERBOSE, "attempting to load %s" % tarball )
 		self.verify()
 
+	def add(self, path, altname=None):
+		self.tarball_target.add(
+			path,
+			arcname   = altname,
+			recursive = True,
+			exclude   = None,
+			filter    = None)
+
 	def getRootFolder(self):
 		members = self.tarball_target.getmembers()
 		directories = []
