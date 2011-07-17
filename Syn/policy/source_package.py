@@ -31,6 +31,10 @@ STAGE           = "S_STAGE"
 STAGE_FLAGS     = "S_STAGE_FLAGS"
 XTN             = ".syn.tar.gz"
 
+VALID_UPSTREAM_ARCHIVES = [
+	".tar.gz"
+]
+
 DESTDIR         = "S_DESTDIR"
 STAGE_DIR       = "./" + SOURCE_DIRECTORY + "/stage"
 

@@ -4,6 +4,7 @@ import Syn.policy.source_package as S
 import Syn.source_tarball
 import Syn.exceptions
 import Syn.json_file
+import Syn.tarball
 import Syn.common
 import Syn.log
 import os.path
@@ -54,5 +55,17 @@ def loadEnv():
 			Syn.common.putenv(x, val)
 
 def build(synball):
-	loadEnv()
-	
+	src = Syn.source_tarball.source_tarball(synball)
+	rf = src.getRootFolder()
+	Syn.log.l(Syn.log.PEDANTIC,"Loading tarball %s with root %s" % (synball, rf))
+	src.extractall()
+
+	upstream_tarball = src.upstream_tarball_id()
+
+	tb =Syn.tarball.tarball(upstream_tarball)
+	rf_us = tb.getRootFolder()
+	if rf_us != rf:
+		Syn.log.l(Syn.log.CRITICAL,"Fuck, upstream root directory and synd root are not the same. ABORT!")
+		Syn.log.l(Syn.log.CRITICAL," Expected: %s" % rf)
+		Syn.log.l(Syn.log.CRITICAL,"      Got: %s" % rf_us)
+		raise Syn.exceptions.SynFormatException("Fuck'n syn directory does not match")
