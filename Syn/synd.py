@@ -53,3 +53,6 @@ def loadEnv():
 		else:
 			Syn.common.putenv(x, val)
 
+def build(synball):
+	loadEnv()
+	
