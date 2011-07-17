@@ -1,11 +1,14 @@
 # Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
 
 import Syn.policy.source_package as S
+import Syn.source_tarball
 import Syn.exceptions
 import Syn.json_file
 import Syn.common
 import Syn.log
 import os.path
+import tarfile
+import Syn.sh
 import os
 
 def runStage(Stage, syndRoot = "./"):
@@ -17,6 +20,13 @@ def packageSynd():
 	wdir = Syn.common.getcwd()
 	package = os.path.basename(wdir)
 	Syn.log.l(Syn.log.PEDANTIC,"Found package top-level as: %s" % package)
+	FPATH = package + S.XTN
+	tarball = tarfile.open(FPATH, 'w')
+	Syn.sh.cd("..")
+	tarball.add(package)
+	tarball.close()
+	Syn.sh.cd(package)
+	return Syn.source_tarball.source_tarball(FPATH)
 
 def loadEnv():
 	envfile = S.SOURCE_DIRECTORY + "/" + S.ENVFILE

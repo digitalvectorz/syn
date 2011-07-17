@@ -29,6 +29,7 @@ BUILD           = "S_BUILD"
 BUILD_FLAGS     = "S_BUILD_FLAGS"
 STAGE           = "S_STAGE"
 STAGE_FLAGS     = "S_STAGE_FLAGS"
+XTN             = ".syn.tar.gz"
 
 DESTDIR         = "S_DESTDIR"
 STAGE_DIR       = "./" + SOURCE_DIRECTORY + "/stage"

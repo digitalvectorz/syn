@@ -37,4 +37,5 @@ assert C == "make install"
 Syn.source_tarball.source_tarball("test-1.0.syn.tar.gz").extractall()
 
 Syn.sh.cd("test-1.0")
-Syn.synd.packageSynd()
+tbal = Syn.synd.packageSynd()
+
