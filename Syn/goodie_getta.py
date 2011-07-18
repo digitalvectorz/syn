@@ -1,7 +1,8 @@
 # Copyright 2011 (c) GNU GPL-3+, Ryan Maloney <rpm5779@rit.edu>
 
-import os
+import os.path
 import Syn.policy.goodies as G
+import Syn.common
 
 def get_files( dirpath):
 	goodie_list=[]
@@ -9,30 +10,17 @@ def get_files( dirpath):
 		goodie_list.append(member)
 	return goodie_list
 
-def get_goodies():
-	goodies={}
-	#do binaries
-	binaries=[]
-	for b in G.BINARIES:
-		for i in get_files(b):
-			binaries.append(i)
-
-	goodies["binaries"]=binaries
-	#do lib	
-	lib=[]
-
-	for l in G.LIB:
-		for j in get_files(l):
-			lib.append(j)
-
-	goodies["library"]=lib
-	#do conf
-	conf=[]
-
+def get_goodies( filepath ):
 	
-	for k in get_files(G.CONF):
-		conf.append(k)
-
-	goodies["conf"]=conf
-
-	return goodies
+	goodie_list=[]
+	if type(filepath) is list:
+		for directory in filepath:
+			goodies={}
+			goodies[os.path.basename(directory)]=get_files(directory)
+			goodie_list.append(goodies)	
+		return goodie_list	
+	else:
+		goodies={}
+		goodies[os.path.basename(filepath)]=get_files(filepath)
+		goodie_list.append(goodies)
+		return goodies
