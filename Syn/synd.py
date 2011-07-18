@@ -73,5 +73,8 @@ def build(synball):
 	tb.extractall()
 
 	Syn.sh.cd(rf)
-	print runStage("configure")
 
+	loadEnv()
+
+	print runStage("cfg")
+	print runStage("build")
