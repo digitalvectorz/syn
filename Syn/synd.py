@@ -78,3 +78,5 @@ def build(synball):
 
 	print runStage("cfg")
 	print runStage("build")
+	print runStage("stage")
+
