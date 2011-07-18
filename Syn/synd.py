@@ -49,7 +49,7 @@ def loadEnv():
 		if type(val) == list:
 			combined_val = ""
 			for y in envdict[x]:
-				combined_val += y
+				combined_val += y + " "
 			Syn.common.putenv(x, combined_val)
 		else:
 			Syn.common.putenv(x, val)
