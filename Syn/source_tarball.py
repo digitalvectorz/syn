@@ -29,3 +29,9 @@ class source_tarball(Syn.tarball.tarball):
 		metafile = m.read()
 		figgleforth = json.loads(metafile)
 		return os.path.basename(figgleforth["wget-url"])
+
+	def package_fullid(self):
+		m = self.readMember(self.getRootFolder() + "/" + S.SOURCE_DIRECTORY + "/" + S.METAFILE)
+		metafile = m.read()
+		figgleforth = json.loads(metafile)
+		return os.path.basename(figgleforth["package"] + "-" + figgleforth["version"])

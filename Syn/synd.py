@@ -104,6 +104,8 @@ def packageBuiltBinaryFolder():
 	tarball.add(S.STAGE_FOLD)
 	tarball.close()
 	synball = Syn.binary_tarball.binary_tarball(fullid + B.XTN)
+
+	Syn.sh.cd(popdir)
 	return synball
 
 def build(synball):
@@ -127,10 +129,13 @@ def build(synball):
 	Syn.sh.cd(rf)
 	loadEnv()
 
-	#runStage("cfg")
-	#runStage("build")
-	#runStage("stage")
+	runStage("cfg")
+	runStage("build")
+	runStage("stage")
 
 	migrateMetadata()
-	packageBuiltBinaryFolder()
+	syn = packageBuiltBinaryFolder()
 
+	tarball = S.STAGE_ROOT + "/" + src.package_fullid() + B.XTN
+	Syn.sh.mv(tarball, "../" + src.package_fullid() + B.XTN)
+	#Syn.sh.mv(
