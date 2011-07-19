@@ -55,3 +55,4 @@ def md5sumfilematches(md5file, directory):
 	delt = verify(md5file, directory)
 	return delt == {}
 
+
