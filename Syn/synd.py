@@ -42,13 +42,11 @@ def loadEnv():
 	cwd = Syn.common.getcwd()
 	Syn.log.l(Syn.log.PEDANTIC, "ENV CWD: " + cwd)
 
-	destdir = cwd + "/" + S.STAGE_DIR
-	Syn.common.putenv(S.DESTDIR, destdir)
-
+	destdir    = cwd + "/" + S.STAGE_ROOT + "/" + S.STAGE_FOLD
 	binaryRoot = cwd + "/" + S.STAGE_ROOT
-	Syn.common.putenv(S.BINARY_ROOT, binaryRoot)
 
-	Syn.log.l(Syn.log.PEDANTIC, "Set DESTDIR as %s" % destdir)
+	Syn.common.putenv(S.DESTDIR,     destdir)
+	Syn.common.putenv(S.BINARY_ROOT, binaryRoot)
 
 	for x in S.BUILD_ENV_KEYS:
 		try:
@@ -131,9 +129,9 @@ def build(synball):
 	Syn.sh.cd(rf)
 	loadEnv()
 
-	#runStage("cfg")
-	#runStage("build")
-	#runStage("stage")
+	runStage("cfg")
+	runStage("build")
+	runStage("stage")
 
 	migrateMetadata()
 	packageBuiltBinaryFolder()
