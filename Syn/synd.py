@@ -27,7 +27,7 @@ def packageSynd():
 	package = os.path.basename(wdir)
 	Syn.log.l(Syn.log.PEDANTIC,"Found package top-level as: %s" % package)
 	FPATH = package + S.XTN
-	tarball = tarfile.open(FPATH, 'w')
+	tarball = tarfile.open(FPATH, 'w:gz')
 	Syn.sh.cd("..")
 	tarball.add(package)
 	tarball.close()
@@ -99,7 +99,7 @@ def packageBuiltBinaryFolder():
 	bblob = Syn.json_bfile.json_bfile(broot + "/" + S.STAGE_META + "/" + B.METAFILE)
 	packagedata = bblob.getContent()
 	fullid = "%s-%s" % ( packagedata["package"], packagedata["version"] )
-	tarball = tarfile.open(fullid + B.XTN, 'w')
+	tarball = tarfile.open(fullid + B.XTN, 'w:gz')
 	tarball.add(S.STAGE_META)
 	tarball.add(S.STAGE_FOLD)
 	tarball.close()
@@ -138,4 +138,3 @@ def build(synball):
 
 	tarball = S.STAGE_ROOT + "/" + src.package_fullid() + B.XTN
 	Syn.sh.mv(tarball, "../" + src.package_fullid() + B.XTN)
-	#Syn.sh.mv(
