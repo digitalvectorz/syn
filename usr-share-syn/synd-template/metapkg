@@ -19,7 +19,7 @@
         "pkg2",
         "pkg3"
     ],
-    build-deps : [
+    "build-deps" : [
         "a",
         "b",
         "c"

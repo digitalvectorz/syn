@@ -31,8 +31,13 @@ STAGE           = "S_STAGE"
 STAGE_FLAGS     = "S_STAGE_FLAGS"
 XTN             = ".syn.tar.gz"
 
+VALID_UPSTREAM_ARCHIVES = [
+	".tar.gz"
+]
+
 DESTDIR         = "S_DESTDIR"
-STAGE_DIR       = "./" + SOURCE_DIRECTORY + "/stage"
+STAGE_DIR       = "./" + SOURCE_DIRECTORY + "/stage/root"
+STAGE_META_DIR  = "../meta" # This is relitive to STAGE_DIR
 
 BUILD_ENV_KEYS = [
 	STRIP_BINARIES,

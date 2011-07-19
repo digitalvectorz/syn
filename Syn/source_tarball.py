@@ -1,10 +1,12 @@
 # Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
 
+import json
 import Syn.log
 import Syn.tarball
 import Syn.exceptions
 import Syn.policy.source_package as S
 
+import os.path
 import tarfile
 
 class source_tarball(Syn.tarball.tarball):
@@ -21,3 +23,9 @@ class source_tarball(Syn.tarball.tarball):
 					Syn.log.l(Syn.log.PEDANTIC,"Exists: %s" % y)
 			except KeyError as e:
 				raise Syn.exceptions.SynFormatException("Bad source tarball")
+
+	def upstream_tarball_id(self):
+		m = self.readMember(self.getRootFolder() + "/" + S.SOURCE_DIRECTORY + "/" + S.METAFILE)
+		metafile = m.read()
+		figgleforth = json.loads(metafile)
+		return os.path.basename(figgleforth["wget-url"])
