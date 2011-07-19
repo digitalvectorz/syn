@@ -18,6 +18,7 @@ import os
 def runStage(Stage, syndRoot = "./"):
 	bldfile = syndRoot + S.SOURCE_DIRECTORY + "/" + S.BUILDFILE
 	[ status, output ] = Syn.common.run("./" + bldfile + " " + Stage)
+	Syn.log.l(Syn.log.PEDANTIC,"Stage: %s finished with status %s" % (Stage, status))
 	return output
 
 def packageSynd():
@@ -109,8 +110,8 @@ def build(synball):
 
 	loadEnv()
 
-	#runStage("cfg")
-	#runStage("build")
-	#runStage("stage")
+	runStage("cfg")
+	runStage("build")
+	runStage("stage")
 
 	migrateMetadata()
