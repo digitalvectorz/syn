@@ -18,3 +18,5 @@ METAFILE      = "metafile"
 HOOK_DIR      = "hooks"
 FS_ROOT       = "root"
 
+XTN             = ".syn"
+

@@ -39,11 +39,13 @@ def loadEnv():
 	envdict = env.getContent()
 
 	cwd = Syn.common.getcwd()
-
 	Syn.log.l(Syn.log.PEDANTIC, "ENV CWD: " + cwd)
 
 	destdir = cwd + "/" + S.STAGE_DIR
 	Syn.common.putenv(S.DESTDIR, destdir)
+
+	binaryRoot = cwd + "/" + S.STAGE_ROOT
+	Syn.common.putenv(S.BINARY_ROOT, binaryRoot)
 
 	Syn.log.l(Syn.log.PEDANTIC, "Set DESTDIR as %s" % destdir)
 
@@ -67,7 +69,7 @@ def migrateMetadata():
 	metadir = Syn.common.getenv(S.DESTDIR)
 	Syn.log.l(Syn.log.PEDANTIC,"Metadir as: %s" % metadir)
 	metadir = metadir + "/" + S.STAGE_META_DIR
-	Syn.log.l(Syn.log.VERBOSE,"Metastage: %s" % metadir)
+	Syn.log.l(Syn.log.PEDANTIC,"Metastage: %s" % metadir)
 
 	if not Syn.sh.xists(metadir):
 		Syn.sh.mkdir(metadir)
@@ -88,6 +90,25 @@ def migrateMetadata():
 	bblob.setContent(binaryBlob)
 	bblob.write()
 
+def packageBuiltBinaryFolder():
+	# Note, this *NEEDS* the envsetup before use.
+	broot = Syn.common.getenv(S.BINARY_ROOT)
+	metadir = Syn.common.getenv(S.DESTDIR)
+
+	popdir = Syn.common.getcwd()
+	Syn.sh.cd(broot)
+	bblob = Syn.json_bfile.json_bfile(broot + "/" + S.STAGE_DIR + "/" + S.STAGE_META_DIR +
+		"/" + B.METAFILE)
+	packagedata = bblob.getContent()
+	fullid = "%s-%s" % ( packagedata["package"], packagedata["version"] )
+	tarball = tarfile.open(fullid + B.XTN, 'w')
+	tarball.add(S.STAGE_META)
+	tarball.add(S.STAGE_FOLD)
+	tarball.close()
+	synball = Syn.binary_tarball.binary_tarball(fullid + B.XTN)
+	return synball
+
+
 def build(synball):
 	src = Syn.source_tarball.source_tarball(synball)
 	rf = src.getRootFolder()
@@ -104,14 +125,14 @@ def build(synball):
 		Syn.log.l(Syn.log.CRITICAL," Expected: %s" % rf)
 		Syn.log.l(Syn.log.CRITICAL,"      Got: %s" % rf_us)
 		raise Syn.exceptions.SynFormatException("Fuck'n syn directory does not match")
+
 	tb.extractall()
-
 	Syn.sh.cd(rf)
-
 	loadEnv()
 
-	runStage("cfg")
-	runStage("build")
-	runStage("stage")
+	#runStage("cfg")
+	#runStage("build")
+	#runStage("stage")
 
 	migrateMetadata()
+	packageBuiltBinaryFolder()
