@@ -3,6 +3,7 @@
 import Syn.policy.source_package as S
 import Syn.policy.binary_package as B
 import Syn.policy.metafile as M
+import Syn.binary_tarball
 import Syn.source_tarball
 import Syn.exceptions
 import Syn.json_bfile
@@ -136,3 +137,4 @@ def build(synball):
 
 	migrateMetadata()
 	packageBuiltBinaryFolder()
+

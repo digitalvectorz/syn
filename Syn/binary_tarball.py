@@ -8,7 +8,7 @@ import Syn.policy.binary_package as B
 import os.path
 import tarfile
 
-class source_tarball(Syn.tarball.tarball):
+class binary_tarball(Syn.tarball.tarball):
 	def verify(self):
 		assert_exists = []
 
@@ -22,5 +22,5 @@ class source_tarball(Syn.tarball.tarball):
 				if crap != "":
 					Syn.log.l(Syn.log.PEDANTIC,"Exists: %s" % y)
 			except KeyError as e:
-				raise Syn.exceptions.SynFormatException("Bad source tarball")
+				raise Syn.exceptions.SynFormatException("Bad binary tarball (missing: %s)" % y)
 

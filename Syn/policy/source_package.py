@@ -11,8 +11,6 @@
 #    build.env # env vars in JSON
 #    pkgmeta # metafile for package details (see A2)
 
-import Syn.policy.binary_package as B
-
 SOURCE_DIRECTORY = "synd"
 BUILDFILE        = "build"
 ENVFILE          = "build.env"

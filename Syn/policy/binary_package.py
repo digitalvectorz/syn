@@ -24,6 +24,6 @@ META_ROOT     = S.STAGE_META
 XTN             = ".syn"
 
 BINARY_DIR_REQ_FILES = [
-	META_ROOT + METAFILE
+	META_ROOT + "/" + METAFILE
 ]
 
