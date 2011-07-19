@@ -36,7 +36,8 @@ VALID_UPSTREAM_ARCHIVES = [
 ]
 
 DESTDIR         = "S_DESTDIR"
-STAGE_DIR       = "./" + SOURCE_DIRECTORY + "/stage"
+STAGE_DIR       = "./" + SOURCE_DIRECTORY + "/stage/root"
+STAGE_META_DIR  = "../meta" # This is relitive to STAGE_DIR
 
 BUILD_ENV_KEYS = [
 	STRIP_BINARIES,

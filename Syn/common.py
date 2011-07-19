@@ -17,10 +17,16 @@ def getcwd():
 	return os.path.abspath(os.getcwd())
 
 def putenv(key, value):
-	Syn.log.l(Syn.log.VERBOSE, "%s = %s" % (key, value))
-	os.putenv(key, value)
+	Syn.log.l(Syn.log.VERBOSE, "W: %s = %s" % (key, value))
+	os.environ[key] = value
+
+def getenv(key):
+	value = os.environ[key]
+	Syn.log.l(Syn.log.VERBOSE, "R: %s = %s" % (key, value))
+	return value
 
 def run(cmd):
+	Syn.log.l(Syn.log.VERBOSE, "Running: %s" % cmd)
 	return commands.getstatusoutput(cmd)
 
 def getRelativePath(dirname):

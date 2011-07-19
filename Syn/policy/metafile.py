@@ -40,6 +40,19 @@ LICENSE_CLEAN = [
 	"PSFL-2"
 ]
 
+META_BINARY_MIGRATE = { # ensure this is a *SUBSET*
+	"package"            : 1,
+	"version"            : 1,
+	"deps"               : 1,
+	"description"        : 1,
+	"local-version"      : 1,
+	"maintainer"         : 1,
+	"package-type"       : 1,
+	"wget-url"           : 1,
+	"syn-policy-version" : 1,
+	"license"            : 1
+}
+
 LICENSE_TAINT = [
 	"nonfree"
 ]
