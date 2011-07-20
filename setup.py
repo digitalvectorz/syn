@@ -20,11 +20,20 @@ def fucking_recusion_how_does_it_work_not_here():
 			ret.append(val)
 	return ret
 
+def dirls(d):
+	ret = []
+	for root, dirs, files in os.walk(d):
+		if files != []:
+			for f in files:
+				ret.append(root + "/" + f)
+	return ret
+
 usrshare = fucking_recusion_how_does_it_work_not_here()
 
 setup(
 	name       = __appname__,
 	version    = __version__,
-	packages   = [ 'Syn', 'Syn.policy' ],
-	data_files = usrshare
+	packages   = [ 'Syn', 'Syn.policy', 'Syn.plumbing' ],
+	data_files = usrshare,
+	scripts    = dirls('bin')
 )
