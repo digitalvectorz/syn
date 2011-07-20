@@ -12,6 +12,7 @@
     "syn-policy-version" : 1,
     "package" : "foo",
     "version" : "3.2",
+    "description" : "I'm just a poor package. Love me!",
     "local-version" : 1,
     "package-type" : "CLI",
     "deps" : [

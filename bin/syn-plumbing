@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+# Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
+
+import Syn.exceptions
+import Syn.plumbing
+import Syn.plumber
+import Syn.log
+
+import sys
+
+argstack = sys.argv
+
+if len(argstack) <= 1:
+	argstack.append(None)
+try:
+	Syn.plumber.runRoute(argstack[1], argstack)
+except Syn.exceptions.SynShittyPlumbingException as e:
+	print str(e)

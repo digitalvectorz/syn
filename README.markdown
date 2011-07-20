@@ -9,6 +9,6 @@ As always, patches are more then welcome (they're encouraged), and will be rewar
 
 Syn is GNU GPL Free and Open source. Authors can be found in the AUTHORS file.
 
-To get a full list of all commiters:
+To get a full list of all commiters (this is messy):
 
 $ git log | grep Author | sort | uniq | sed s/Author:\ //g

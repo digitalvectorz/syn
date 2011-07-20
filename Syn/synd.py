@@ -27,7 +27,7 @@ def packageSynd():
 	package = os.path.basename(wdir)
 	Syn.log.l(Syn.log.PEDANTIC,"Found package top-level as: %s" % package)
 	FPATH = package + S.XTN
-	tarball = tarfile.open(FPATH, 'w')
+	tarball = tarfile.open(FPATH, 'w:gz')
 	Syn.sh.cd("..")
 	tarball.add(package)
 	tarball.close()
@@ -42,13 +42,11 @@ def loadEnv():
 	cwd = Syn.common.getcwd()
 	Syn.log.l(Syn.log.PEDANTIC, "ENV CWD: " + cwd)
 
-	destdir = cwd + "/" + S.STAGE_DIR
-	Syn.common.putenv(S.DESTDIR, destdir)
-
+	destdir    = cwd + "/" + S.STAGE_ROOT + "/" + S.STAGE_FOLD
 	binaryRoot = cwd + "/" + S.STAGE_ROOT
-	Syn.common.putenv(S.BINARY_ROOT, binaryRoot)
 
-	Syn.log.l(Syn.log.PEDANTIC, "Set DESTDIR as %s" % destdir)
+	Syn.common.putenv(S.DESTDIR,     destdir)
+	Syn.common.putenv(S.BINARY_ROOT, binaryRoot)
 
 	for x in S.BUILD_ENV_KEYS:
 		try:
@@ -67,14 +65,13 @@ def loadEnv():
 
 def migrateMetadata():
 	# Note, this *NEEDS* the envsetup before use.
-	metadir = Syn.common.getenv(S.DESTDIR)
-	Syn.log.l(Syn.log.PEDANTIC,"Metadir as: %s" % metadir)
-	metadir = metadir + "/" + S.STAGE_META_DIR
+	metadir = Syn.common.getenv(S.BINARY_ROOT)
+	metadir = metadir + "/" + S.STAGE_META
+
 	Syn.log.l(Syn.log.PEDANTIC,"Metastage: %s" % metadir)
 
 	if not Syn.sh.xists(metadir):
 		Syn.sh.mkdir(metadir)
-
 
 	metafile = S.SOURCE_DIRECTORY + "/" + S.METAFILE
 	meta = Syn.json_file.json_file(metafile)
@@ -97,18 +94,19 @@ def packageBuiltBinaryFolder():
 	metadir = Syn.common.getenv(S.DESTDIR)
 
 	popdir = Syn.common.getcwd()
-	Syn.sh.cd(broot)
-	bblob = Syn.json_bfile.json_bfile(broot + "/" + S.STAGE_DIR + "/" + S.STAGE_META_DIR +
-		"/" + B.METAFILE)
+	Syn.sh.cd(broot) # n-cwd - ./bash-4.1/ 
+
+	bblob = Syn.json_bfile.json_bfile(broot + "/" + S.STAGE_META + "/" + B.METAFILE)
 	packagedata = bblob.getContent()
 	fullid = "%s-%s" % ( packagedata["package"], packagedata["version"] )
-	tarball = tarfile.open(fullid + B.XTN, 'w')
+	tarball = tarfile.open(fullid + B.XTN, 'w:gz')
 	tarball.add(S.STAGE_META)
 	tarball.add(S.STAGE_FOLD)
 	tarball.close()
 	synball = Syn.binary_tarball.binary_tarball(fullid + B.XTN)
-	return synball
 
+	Syn.sh.cd(popdir)
+	return synball
 
 def build(synball):
 	src = Syn.source_tarball.source_tarball(synball)
@@ -131,10 +129,12 @@ def build(synball):
 	Syn.sh.cd(rf)
 	loadEnv()
 
-	#runStage("cfg")
-	#runStage("build")
-	#runStage("stage")
+	runStage("cfg")
+	runStage("build")
+	runStage("stage")
 
 	migrateMetadata()
-	packageBuiltBinaryFolder()
+	syn = packageBuiltBinaryFolder()
 
+	tarball = S.STAGE_ROOT + "/" + src.package_fullid() + B.XTN
+	Syn.sh.mv(tarball, "../" + src.package_fullid() + B.XTN)

@@ -15,12 +15,6 @@ META_REQUIRED = {
 	"syn-policy-version" : 1
 }
 
-SECTION_REQUIRED = {
-	"lib" : {
-		"lib-major-id" : 1
-	}
-}
-
 META_NEEDED = {
 	"license"  : 1,
 	"syn-vcs"  : 1
@@ -260,18 +254,5 @@ This field is what tells Syn what kind of package this is.
  right section to file the package against. Here are the common ones:
 
   Fill me in! #todo XXX: fix!
-""",
-	"lib-major-id"             :
-"""
-This field lets syn know what version the ABI is at.
- Policy Version: 1
-
- This field lets us declare version IDs in a clean way. Let's say
- we have package `libfoo' major ID of 1. We then must create:
-
-  libfoo.so.1
-
- so that if it's package number is 1.2 or 1.3, upgrade paths are
- handled with grace.
 """
 }
