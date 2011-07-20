@@ -3,6 +3,7 @@
 import Syn.plumber
 import Syn.synlint
 
+import Syn.json_file
 import Syn.source_tarball
 
 def run_synlint_synball(args):
