@@ -36,3 +36,5 @@ def evaluateMetadict(crap):
 	Syn.log.l(Syn.log.CRITICAL,"Warnings: %s" % warnings)
 	Syn.log.l(Syn.log.CRITICAL,"Pendants: %s" % pendent)
 	Syn.log.l(Syn.log.CRITICAL,"")
+
+	return ( errors, warnings, pendent )
