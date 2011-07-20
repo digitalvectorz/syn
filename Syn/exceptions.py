@@ -6,6 +6,9 @@ class SynException(Exception):
 	def __str__(self):
 		return repr(self.value)
 
+class SynShittyPlumbingException(SynException):
+	pass
+
 class SynDirectoryFailure(SynException):
 	pass
 
