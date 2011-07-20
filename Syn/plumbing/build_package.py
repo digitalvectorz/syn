@@ -1,6 +1,11 @@
 # Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
 
-import Syn.synd
+import Syn.plumber
+
+PLUMBING_NAME = "build_package"
 
 def run(args):
-	tbal = Syn.synd.packageSynd()
+	print args
+
+Syn.plumber.registerRoute(PLUMBING_NAME, run)
+
