@@ -27,12 +27,13 @@ def packageSynd():
 	package = os.path.basename(wdir)
 	Syn.log.l(Syn.log.PEDANTIC,"Found package top-level as: %s" % package)
 	FPATH = package + S.XTN
-	tarball = tarfile.open(FPATH, 'w:gz')
 	Syn.sh.cd("..")
+	tarball = tarfile.open(FPATH, 'w:gz')
 	tarball.add(package)
 	tarball.close()
+	ret = Syn.source_tarball.source_tarball(FPATH)
 	Syn.sh.cd(package)
-	return Syn.source_tarball.source_tarball(FPATH)
+	return ret
 
 def loadEnv():
 	envfile = S.SOURCE_DIRECTORY + "/" + S.ENVFILE
