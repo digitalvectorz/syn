@@ -6,7 +6,8 @@ PLUMBING_NAME = None
 
 display_blacklist = [
 	None,
-	"echo"
+	"echo",
+	"_nukestrap"
 ]
 
 def run(args):
