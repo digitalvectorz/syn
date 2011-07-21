@@ -1,0 +1,7 @@
+#!/bin/bash
+
+syn-plumbing synball-create
+PKG=$(basename `pwd`)
+cd ..
+syn-plumbing synlint-synball $PKG.syn.tar.gz
+syn-plumbing synball-isolate-compile $PKG.syn.tar.gz
