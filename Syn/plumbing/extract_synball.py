@@ -2,7 +2,7 @@
 
 import Syn.plumber
 
-PLUMBING_NAME = "extract-synball"
+PLUMBING_NAME = "synball-extract"
 
 def run(args):
 	try:

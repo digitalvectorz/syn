@@ -4,7 +4,7 @@ import Syn.plumber
 import Syn.synd
 import Syn.sh
 
-PLUMBING_NAME = "compile-synball"
+PLUMBING_NAME = "synball-compile"
 
 def run(args):
 	try:

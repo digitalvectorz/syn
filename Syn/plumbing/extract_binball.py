@@ -2,7 +2,7 @@
 
 import Syn.plumber
 
-PLUMBING_NAME = "extract-binball"
+PLUMBING_NAME = "binball-extract"
 
 def run(args):
 	try:
