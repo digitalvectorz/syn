@@ -10,6 +10,7 @@ def run_synlint_synball(args):
 	try:
 		if Syn.sh.xists(args[2]):
 			stb = Syn.source_tarball.source_tarball(args[2])
+			Syn.log.l(Syn.log.VERBOSE,"TLD Resolved as: %s" % stb.getRootFolder())
 			dickt = stb.get_metablob()
 			( errors, warnings, pendent ) = Syn.synlint.evaluateMetadict(dickt)
 		else:
