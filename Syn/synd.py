@@ -139,3 +139,5 @@ def build(synball):
 
 	tarball = S.STAGE_ROOT + "/" + src.package_fullid() + B.XTN
 	Syn.sh.mv(tarball, "../" + src.package_fullid() + B.XTN)
+
+	return os.path.abspath("../" + src.package_fullid() + B.XTN)

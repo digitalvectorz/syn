@@ -14,6 +14,8 @@ def run(args):
 		if not Syn.sh.xists(args[2]):
 			raise KeyError('offset 2')
 
+		cwd = Syn.common.getcwd()
+
 		wd = Syn.common.getTempLocation()
 		if Syn.sh.xists(wd):
 			raise Syn.exceptions.ConflictException("Fuck all, dir exists: %s" % wd)
@@ -33,8 +35,10 @@ def run(args):
 
 		Syn.sh.cd(wd)
 
-		Syn.synd.build(fullid + S.XTN)
+		binary = Syn.synd.build(fullid + S.XTN)
 
+		Syn.sh.cd(cwd)
+		Syn.sh.mv(binary, cwd)
 		Syn.sh.rmdir(wd)
 	except KeyError as e:
 		raise Syn.exceptions.FileNotPresentException("Fucking asshole. No file.")
