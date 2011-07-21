@@ -4,7 +4,6 @@ import Syn.json_bfile
 import Syn.bfile
 import hashlib
 import os.path
-import delt
 import exceptions
 
 def md5sum(path):
@@ -48,7 +47,7 @@ def makemd5sumfile(filepath, file_id):
 def verify(md5file, directory):	
 	jbf = Syn.json_bfile.json_bfile(md5file)
 	dhash = md5sumwd(directory)
-	d = delt.delt( jbf.getContent(), dhash )
+	d = Syn.common.delt( jbf.getContent(), dhash )
 	return d
 
 def md5sumfilematches(md5file, directory):
