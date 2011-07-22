@@ -1,15 +1,14 @@
 # Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
 
 import Syn.plumber
-import Syn.synd
-import Syn.sh
 
-PLUMBING_NAME = "synball-compile"
+PLUMBING_NAME = "binball-extract"
 
 def run(args):
 	try:
 		if Syn.sh.xists(args[2]):
-			Syn.synd.build(args[2])
+			btb = Syn.binary_tarball.binary_tarball(args[2])
+			btb.extractall()
 		else:
 			raise Syn.exceptions.SynShittyPlumbingException("Synball does not exist!: %s" % args[2])
 	except IndexError as e:

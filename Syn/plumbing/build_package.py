@@ -3,7 +3,7 @@
 import Syn.plumber
 import Syn.synd
 
-PLUMBING_NAME = "package-synball"
+PLUMBING_NAME = "synball-create"
 
 def run(args):
 	Syn.synd.packageSynd()

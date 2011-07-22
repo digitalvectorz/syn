@@ -34,10 +34,6 @@ BINARY_ROOT     = "S_BINARY_ROOT"
 
 XTN             = ".syn.tar.gz"
 
-VALID_UPSTREAM_ARCHIVES = [
-	".tar.gz"
-]
-
 STAGE_ROOT      = "./" + SOURCE_DIRECTORY + "/stage"
 STAGE_FOLD      = "root"
 STAGE_META      = "meta"

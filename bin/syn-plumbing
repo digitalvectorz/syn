@@ -14,5 +14,5 @@ if len(argstack) <= 1:
 	argstack.append(None)
 try:
 	Syn.plumber.runRoute(argstack[1], argstack)
-except Syn.exceptions.SynShittyPlumbingException as e:
+except Syn.exceptions.SynException as e:
 	print str(e)
