@@ -15,10 +15,8 @@ def run(args):
 	pkgdb = Syn.package_registry.package_registry(ROOT_PATH)
 
 	try:
-		try:
-			dbinf = pkgdb.getPackage(args[2])
-		except Syn.exceptions.SynException as e:
-			Syn.log.l(Syn.log.VERBOSE,"New install for %s" % args[2])
+		dbinf = Syn.binary_tarball.binary_tarball(args[2])
+		Syn.log.l(Syn.log.VERBOSE,"Package is type: %s" % dbinf.package_fullid())
 	except IndexError as e:
 		raise Syn.exceptions.SynShittyPlumbingException("You forgot an argument!: %s" % str(e))
 

@@ -13,6 +13,11 @@ def getTempLocation():
 	unpack_dir = U.TMP_WORKDIR + str(timestamp) + "/"
 	return unpack_dir
 
+def getTempFileLoc():
+	timestamp = time.time()
+	unpack_dir = U.TMP_WORKDIR + str(timestamp) + "-file"
+	return unpack_dir
+
 def getcwd():
 	return os.path.abspath(os.getcwd())
 

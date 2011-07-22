@@ -24,3 +24,22 @@ class binary_tarball(Syn.tarball.tarball):
 			except KeyError as e:
 				raise Syn.exceptions.SynFormatException("Bad binary tarball (missing: %s)" % y)
 
+	def upstream_tarball_id(self):
+		figgleforth = self.get_metablob()
+		return os.path.basename(figgleforth["wget-url"])
+
+	def package_fullid(self):
+		figgleforth = self.get_metablob()
+		return os.path.basename(figgleforth["package"] + "-" + figgleforth["version"])
+
+	def get_metablob(self):
+		targs = Syn.common.getTempFileLoc()
+		self.tarball_target.extract(
+			B.META_ROOT + "/" + B.METAFILE,
+			targs
+		)
+
+		sbf = Syn.json_bfile.json_bfile(targs)
+		figgleforth = sbf.getContent()
+
+		return figgleforth
