@@ -33,13 +33,19 @@ class binary_tarball(Syn.tarball.tarball):
 		return os.path.basename(figgleforth["package"] + "-" + figgleforth["version"])
 
 	def get_metablob(self):
-		targs = Syn.common.getTempFileLoc()
+		targs = Syn.common.getTempLocation()
+
+		Syn.log.l(Syn.log.VERBOSE,"Using temp loc: %s" % targs)
+
 		self.tarball_target.extract(
 			B.META_ROOT + "/" + B.METAFILE,
 			targs
 		)
 
-		sbf = Syn.json_bfile.json_bfile(targs)
+		sbf = Syn.json_bfile.json_bfile(
+			targs + "/" + B.META_ROOT + "/" + B.METAFILE
+		)
 		figgleforth = sbf.getContent()
 
+		Syn.sh.rmdir(targs)
 		return figgleforth
