@@ -12,6 +12,10 @@ def install(synball):
 		dbinf = Syn.binary_tarball.binary_tarball(synball)
 		package = dbinf.get_metablob()
 		Syn.log.l(Syn.log.VERBOSE,"Package is name: %s" % package['package'])
+		fullpkgpath = "/" + package['package'][0] + "/" + package['package']
+
+		Syn.log.l(Syn.log.VERBOSE,"Package path is: %s" % fullpkgpath)
+
 		try:
 			pkgid = pkgdb.getPackage(package['package'])
 			Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
