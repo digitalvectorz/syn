@@ -12,7 +12,7 @@ class BfileTestCase(unittest.TestCase):
 	def tearDown(self):
 		Syn.sh.rm("bfile-test.testdb")
 
-	def testRead(self):
+	def test_read(self):
 		file_id = "bfile-test.testdb"
 		test_content = """Hello, World!
 		This is a test of this and that
@@ -27,3 +27,6 @@ class BfileTestCase(unittest.TestCase):
 		tfile2 = Syn.bfile.bfile(file_id)
 		compare_content_2 = tfile2.getContent() 
 		assert test_content == compare_content_2
+
+if __name__ == '__main__':
+	unittest.main()

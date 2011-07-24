@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 # Copyright 2011 (c) GNU GPL-3+, Ryan Maloney <rpm5779@rit.edu>
 
-
 import unittest
 import Syn.bfile
 
-
 class bfileTestCase(unittest.TestCase):
-	def setUp(self):
-		
+	def setUp(self):		
 		self.tfile = Syn.bfile.bfile("bfile-test.testdb")
+
 	def testRead(self):
 		file_id = "bfile-test.testdb"
 		test_content = """Hello, World!
