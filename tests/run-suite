@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for x in `ls unittests/*.py`; do
+	./$x
+done

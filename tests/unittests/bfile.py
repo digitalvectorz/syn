@@ -12,7 +12,7 @@ class BfileTestCase(unittest.TestCase):
 	def tearDown(self):
 		Syn.sh.rm("bfile-test.testdb")
 
-	def test_read(self):
+	def testRead(self):
 		file_id = "bfile-test.testdb"
 		test_content = """Hello, World!
 		This is a test of this and that
