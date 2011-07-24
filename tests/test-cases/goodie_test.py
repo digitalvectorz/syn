@@ -3,10 +3,11 @@
 
 import Syn.goodie_getta as getta
 
+test=getta.get_goodies(["/usr/bin","/etc"])
+test2=getta.get_goodies("/usr/bin")
 
-assert len(getta.get_goodies("/usr/bin/"))==1
 
-assert len(getta.get_goodies(["/usr/bin","/etc"]))==2
+assert len(test2)==1
 
 # assert  getta.get_goodies("/usr/bin/")[0].has_key("bin")
 

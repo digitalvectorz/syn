@@ -1,0 +1,106 @@
+
+[l] (Pedantic ): Using file: bfile-test.testdb
+[l] (Pedantic ): Updating file: bfile-test.testdb
+[l] (Pedantic ): creating blank file: bfile-test.testdb
+[l] (Pedantic ): Setting internal cache: bfile-test.testdb
+[l] (Pedantic ): Writing file: bfile-test.testdb
+[l] (Pedantic ): Setting internal cache: bfile-test.testdb
+[l] (Pedantic ): Writing file: bfile-test.testdb
+Asserting basic write cache read
+[l] (Pedantic ): Using file: bfile-test.testdb
+[l] (Pedantic ): Updating file: bfile-test.testdb
+[l] (Pedantic ): Setting internal cache: bfile-test.testdb
+[l] (Pedantic ): existing file loaded: bfile-test.testdb
+Asserting file re-read
+Checking a good resolve:
+{'A': <Syn.package.package instance at 0x26ed1b8>, 'C': <Syn.package.package instance at 0x26ed2d8>, 'B': <Syn.package.package instance at 0x26ed248>, 'D': <Syn.package.package instance at 0x26ed3b0>}
+Checking a bad resolve:
+Exception. Good
+[l] (Pedantic ): Using file: json_bfile-test.testdb
+[l] (Pedantic ): Updating JSON file: json_bfile-test.testdb
+[l] (Pedantic ): creating blank file: json_bfile-test.testdb
+[l] (Pedantic ): Setting internal cache: json_bfile-test.testdb
+[l] (Pedantic ): Writing JSON file: json_bfile-test.testdb
+[l] (Pedantic ): Setting internal cache: json_bfile-test.testdb
+[l] (Pedantic ): Writing JSON file: json_bfile-test.testdb
+Asserting basic write cache read
+[l] (Pedantic ): Using file: json_bfile-test.testdb
+[l] (Pedantic ): Updating JSON file: json_bfile-test.testdb
+[l] (Pedantic ): Setting internal cache: json_bfile-test.testdb
+[l] (Pedantic ): existing file loaded: json_bfile-test.testdb
+[l] (Pedantic ): Using file: json_file-test.testdb
+[l] (Pedantic ): Updating JSON file: json_file-test.testdb
+[l] (Pedantic ): creating blank file: json_file-test.testdb
+[l] (Pedantic ): Setting internal cache: json_file-test.testdb
+[l] (Pedantic ): Writing JSON file: json_file-test.testdb
+[l] (Pedantic ): Setting internal cache: json_file-test.testdb
+[l] (Pedantic ): Writing JSON file: json_file-test.testdb
+Asserting basic write cache read
+[l] (Pedantic ): Using file: json_file-test.testdb
+[l] (Pedantic ): Updating JSON file: json_file-test.testdb
+[l] (Pedantic ): Setting internal cache: json_file-test.testdb
+[l] (Pedantic ): existing file loaded: json_file-test.testdb
+test dir md5json
+[l] (Pedantic ):   md5json/iamafile3
+[l] (Pedantic ):   md5json/iamafile2
+[l] (Pedantic ):   md5json/iamafile1
+[l] (Pedantic ):   md5json/iamadur/iamasubfile
+[l] (Pedantic ): Using file: write_file
+[l] (Pedantic ): Updating JSON file: write_file
+[l] (Pedantic ): Setting internal cache: write_file
+[l] (Pedantic ): existing file loaded: write_file
+[l] (Pedantic ): Setting internal cache: write_file
+[l] (Pedantic ): Writing JSON file: write_file
+[l] (Pedantic ): Using file: write_file
+[l] (Pedantic ): Updating JSON file: write_file
+[l] (Pedantic ): Setting internal cache: write_file
+[l] (Pedantic ): existing file loaded: write_file
+[l] (Pedantic ):   md5json/iamafile3
+[l] (Pedantic ):   md5json/iamafile2
+[l] (Pedantic ):   md5json/iamafile1
+[l] (Pedantic ):   md5json/iamadur/iamasubfile
+[l] (Pedantic ): Using file: write_file
+[l] (Pedantic ): Updating JSON file: write_file
+[l] (Pedantic ): Setting internal cache: write_file
+[l] (Pedantic ): existing file loaded: write_file
+[l] (Pedantic ):   synd/build
+[l] (Pedantic ):   synd/metapkg
+[l] (Pedantic ):   synd/build.env
+[l] (Verbose  ): attempting to load md5test.tar.gz
+testing md5
+{'md5test/bar': '5bf487da0233682aa1b52bccbc530ab8', 'md5test/foo': '26bb73556ceb32a5df30b733c5355ee5', 'md5test/baz': '86cdc6230a4b73b4aa606f27d178979e'}
+md5 works
+Making: os-test-dir
+[l] (Pedantic ): creating dir os-test-dir
+[l] (Pedantic ): creating dir os-test-dir
+[l] (Pedantic ): checking path `os-test-dir'
+[l] (Pedantic ): chdir to os-test-dir
+[l] (Pedantic ): chdir to ..
+[l] (Pedantic ): rmdir os-test-dir
+[l] (Pedantic ): checking path `os-test-dir'
+[l] (Pedantic ): Using file: ./test-syn-root/pkgdb
+[l] (Pedantic ): Updating JSON file: ./test-syn-root/pkgdb
+[l] (Pedantic ): Setting internal cache: ./test-syn-root/pkgdb
+[l] (Pedantic ): existing file loaded: ./test-syn-root/pkgdb
+'No such package: bash'
+<Syn.package.package instance at 0xb66c68>
+[l] (Pedantic ): Using file: synd/build.env
+[l] (Pedantic ): Updating JSON file: synd/build.env
+[l] (Pedantic ): Setting internal cache: synd/build.env
+[l] (Pedantic ): existing file loaded: synd/build.env
+[l] (Verbose  ): S_DESTDIR = /home/ryan/syn/tests/./synd/stage
+[l] (Verbose  ): S_STRIP_BINARIES = YES
+[l] (Verbose  ): S_CONFIGURE = echo configure
+[l] (Verbose  ): S_CONFIGURE_FLAGS = --prefix=/usr
+[l] (Verbose  ): S_BUILD = echo make
+[l] (Verbose  ): S_BUILD_FLAGS = -j3
+[l] (Verbose  ): S_STAGE = echo make install
+[l] (Verbose  ): S_STAGE_FLAGS = 
+Ensuring output tests match
+configure make -j3 make install
+Awesome
+[l] (Verbose  ): attempting to load test-0.1.tar.gz
+asserting root is the same as the read root
+make sure dir is not present
+OK, extracting
+extracted, testing existance
