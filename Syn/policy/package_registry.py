@@ -6,3 +6,12 @@ NAME_ATTR     = "pkgname"
 VERS_ATTR     = "version"
 DEPS_ATTR     = "dependencies"
 LOCL_ATTR     = "local"
+STAT_ATTR     = "status"
+
+STATUS_VALUE  = {
+	"HALF-INSTALLED" : "Q",
+	"INSTALLED"      : "I",
+	"HALF-LINKED"    : "W",
+	"LINKED"         : "L",
+	"FUCKEDUP"       : "F"
+}
