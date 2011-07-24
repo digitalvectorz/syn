@@ -30,7 +30,7 @@ class package_attrs:
 			R.NAME_ATTR : self._pkg,
 			R.VERS_ATTR : self._ver,
 			R.DEPS_ATTR : self._dep,
-			R.LOCL_ATTR : self._vlocal,
+			R.LOCL_ATTR : self._vlocal
 		}
 		return ret
 class package:
