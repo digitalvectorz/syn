@@ -18,6 +18,7 @@ done
 
 rm *.testdb
 rm -rf test-0.1
+rm -rf os_test_dir
 
 if [ "x$FAIL_FLIP" == "x" ]; then
 	echo "No failures. Removing log."
