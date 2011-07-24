@@ -1,7 +1,17 @@
 #!/bin/bash
 
-syn-plumbing synball-create
 PKG=$(basename `pwd`)
+
+echo "Creating package for $PKG"
+
+syn-plumbing synball-create
 cd ..
 syn-plumbing synlint-synball $PKG.syn.tar.gz
+
+if [ -e $PKG.syn ]; then
+	echo "Binary already exists. Press enter to remove"
+	read foo
+	rm $PKG.syn
+fi
+
 syn-plumbing synball-isolate-compile $PKG.syn.tar.gz

@@ -15,6 +15,7 @@ SOURCE_DIRECTORY = "synd"
 BUILDFILE        = "build"
 ENVFILE          = "build.env"
 METAFILE         = "metapkg"
+GIVEAWAY         = ".syn.source"
 
 SOURCE_DIR_REQ_FILES = [
 	BUILDFILE,
