@@ -1,0 +1,4 @@
+#!/bin/bash
+
+syn-plumbing syns $1
+
