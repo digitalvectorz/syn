@@ -1,4 +1,6 @@
 #!/bin/bash
 
 syn-plumbing syns $1
-gpg --clearsign bash-4.2.syn.manifest
+PKG=$(syn-plumbing synball-pkgfullid $1)
+gpg --clearsign $PKG.syn.manifest
+mv $PKG.syn.manifest.asc $PKG.syn.manifest
