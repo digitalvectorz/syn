@@ -1,6 +1,11 @@
 #!/bin/bash
 
+if [ -e $PKG.syn.manifest ]; then
+	rm $PKG.syn.manifest
+fi
+
 syn-plumbing syns $1
+
 if [ $? -ne 0 ]; then
 	echo "  Error! --> Please target a syn sourceball <-- "
 	exit 1
