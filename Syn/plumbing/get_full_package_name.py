@@ -2,32 +2,21 @@
 
 import Syn.exceptions
 import Syn.plumber
+import Syn.log
 
-PLUMBING_NAME = "syns"
+PLUMBING_NAME = "synball-pkgfullid"
 
 def run(args):
+	Syn.log.VERBOSITY = -1
 	try:
 		if Syn.sh.xists(args[2]):
 			stb = Syn.source_tarball.source_tarball(args[2])
-			otb = stb.upstream_tarball_id()
-
-			frob = stb.get_metablob()
-
-			barfola = {
-				"synsource"  : args[2],
-				"sourcecode" : otb,
-				"package"    : frob['package'],
-				"version"    : frob['version']
-			}
-
-			jsf = Syn.json_file.json_file("%s-%s.syn.manifest" % (frob['package'], frob['version']))
-			jsf.setContent(barfola)
-			jsf.write()
+			otb = stb.package_fullid()
+			print otb
 		else:
 			raise Syn.exceptions.SynShittyPlumbingException("Synball does not exist!: %s" % args[2])
 	except IndexError as e:
 		raise Syn.exceptions.SynShittyPlumbingException("You forgot an argument!: %s" % str(e))
-
 
 Syn.plumber.registerRoute(PLUMBING_NAME, run)
 

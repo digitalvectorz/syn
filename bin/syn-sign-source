@@ -1,4 +1,4 @@
 #!/bin/bash
 
 syn-plumbing syns $1
-
+gpg --clearsign bash-4.2.syn.manifest
