@@ -1,6 +1,11 @@
 #!/bin/bash
 
 syn-plumbing syns $1
+if [ $? -ne 0 ]; then
+	echo "  Error! --> Please target a syn sourceball <-- "
+	exit 1
+fi
+
 PKG=$(syn-plumbing synball-pkgfullid $1)
 gpg --clearsign $PKG.syn.manifest
 mv $PKG.syn.manifest.asc $PKG.syn.manifest
