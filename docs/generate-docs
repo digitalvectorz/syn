@@ -33,6 +33,11 @@ def fetchDocs(path):
 						ret[mod.__name__].append(x)
 					except KeyError as e:
 						ret[mod.__name__] = [x]
+				if isinstance(funs[x], ClassType):
+					try:
+						ret[mod.__name__].append(x)
+					except KeyError as e:
+						ret[mod.__name__] = [x]
 	return ret
 
 for n in toDocument:
