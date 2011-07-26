@@ -3,6 +3,8 @@
 import os.path
 import sys
 
+import json
+
 from types import ModuleType
 from types import FunctionType
 from types import ClassType
@@ -13,6 +15,19 @@ print "[N]: [%s] Initilizing..." % SYNDOC
 toDocument = [
 	"./Syn/",
 ]
+
+def fetchDocsFromDict(dickt):
+	ret = {}
+	for x in dickt:
+		if x[:1] != "_":
+			doc_payload = { x : dickt[x].__doc__ }
+			if isinstance(dickt[x], FunctionType):
+				ret[x] = doc_payload
+			if isinstance(dickt[x], ClassType):
+				ret[x] = doc_payload
+				ret[x]['members'] = fetchDocsFromDict(dickt[x].__dict__)
+	return ret
+
 
 def fetchDocs(path):
 	folder = os.path.abspath(path)
@@ -27,18 +42,13 @@ def fetchDocs(path):
 	                name = mod [:-3]
 	                mod = __import__(name)
 			funs = mod.__dict__
-			for x in funs:
-				if isinstance(funs[x], FunctionType):
-					try:
-						ret[mod.__name__].append(x)
-					except KeyError as e:
-						ret[mod.__name__] = [x]
-				if isinstance(funs[x], ClassType):
-					try:
-						ret[mod.__name__].append(x)
-					except KeyError as e:
-						ret[mod.__name__] = [x]
+			ret[mod.__name__] = fetchDocsFromDict(funs)
+	
 	return ret
 
 for n in toDocument:
-	print fetchDocs(n)
+	shaz = fetchDocs(n)
+	fd = open("json-doc-dump", "w")
+	fd.write(json.dumps(shaz))
+	fd.close()
+
