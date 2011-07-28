@@ -17,12 +17,21 @@ import Syn.sh
 import os
 
 def runStage(Stage, syndRoot = "./"):
+	"""
+	runStage allows you to run a "build" file target
+	(Stage) on the CWD, from any root (syndRoot).
+	"""
 	bldfile = syndRoot + S.SOURCE_DIRECTORY + "/" + S.BUILDFILE
 	[ status, output ] = Syn.common.run("./" + bldfile + " " + Stage)
 	Syn.log.l(Syn.log.PEDANTIC,"Stage: %s finished with status %s" % (Stage, status))
 	return output
 
 def packageSynd():
+	"""
+	packageSynd tars and compresses the synd for
+	use as a builder. There is only a mild ammount of sanity
+	checking in the source_tarball class that ensures this is OK.
+	"""
 	wdir = Syn.common.getcwd()
 	package = os.path.basename(wdir)
 	Syn.log.l(Syn.log.PEDANTIC,"Found package top-level as: %s" % package)
@@ -36,6 +45,10 @@ def packageSynd():
 	return ret
 
 def loadEnv():
+	"""
+	This loads the build.env json_file into the current env, so we can
+	spawn build targets with the right ENV-vars in place.
+	"""
 	envfile = S.SOURCE_DIRECTORY + "/" + S.ENVFILE
 	env = Syn.json_file.json_file(envfile)
 	envdict = env.getContent()
@@ -65,6 +78,14 @@ def loadEnv():
 			Syn.common.putenv(x, val)
 
 def migrateMetadata():
+	"""
+	This migrates the Synd plain-jane json_file into a shortened
+	binary json_bfile with tags stripped out. This is called to create
+	the binary metafile at the end of the build process.
+
+	Please note this needs to have the ENV set up, this uses the ENV to
+	find where to put the binary file. Don't be stupid :)
+	"""
 	# Note, this *NEEDS* the envsetup before use.
 	metadir = Syn.common.getenv(S.BINARY_ROOT)
 	metadir = metadir + "/" + S.STAGE_META
@@ -90,6 +111,13 @@ def migrateMetadata():
 	bblob.write()
 
 def packageBuiltBinaryFolder():
+	"""
+	This packages the binary DESTDIR folders (root and metadata)
+	into a tarball, and returns it as a binary_package.
+
+	Note: This needs to have the env set up from the build,
+	this uses the env gto get the build directory. Don't be stupid :)
+	"""
 	# Note, this *NEEDS* the envsetup before use.
 	broot = Syn.common.getenv(S.BINARY_ROOT)
 	metadir = Syn.common.getenv(S.DESTDIR)
@@ -110,6 +138,10 @@ def packageBuiltBinaryFolder():
 	return synball
 
 def build(synball):
+	"""
+	Clean entry point to do a full-on build of a syn tarball. This
+	does it in place. Be ready to make a mess of the CWD
+	"""
 	src = Syn.source_tarball.source_tarball(synball)
 	rf = src.getRootFolder()
 	# test if directory exists and fail.

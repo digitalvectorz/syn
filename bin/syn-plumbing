@@ -16,3 +16,4 @@ try:
 	Syn.plumber.runRoute(argstack[1], argstack)
 except Syn.exceptions.SynException as e:
 	print str(e)
+	sys.exit(1)
