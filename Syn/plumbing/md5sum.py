@@ -5,6 +5,9 @@ import Syn.md5sum
 PLUMBING_NAME = "md5sum-dir"
 
 def run(args):
+	"""
+	Produce a syn-formatted md5sum of a directory.
+	"""
 	try:
 		if Syn.sh.xists(args[2]) and not Syn.sh.xists(args[3]):
 			Syn.md5sum.makemd5sumfile(args[2], args[3])

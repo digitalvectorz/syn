@@ -5,6 +5,9 @@ import Syn.plumber
 PLUMBING_NAME = "binball-extract"
 
 def run(args):
+	"""
+	Extract a binary tarball into the CWD
+	"""
 	try:
 		if Syn.sh.xists(args[2]):
 			btb = Syn.binary_tarball.binary_tarball(args[2])

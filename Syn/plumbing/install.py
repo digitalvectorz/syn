@@ -7,6 +7,9 @@ import Syn.install
 PLUMBING_NAME = "install-package"
 
 def run(args):
+	"""
+	Install a binball to the system
+	"""
 	try:
 		if Syn.sh.xists(args[2]):
 			Syn.install.install(args[2])

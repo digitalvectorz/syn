@@ -5,6 +5,10 @@ import Syn.plumber
 PLUMBING_NAME = "echo"
 
 def run(args):
+	"""
+	Echo!
+	Echo!
+	"""
 	print args
 
 Syn.plumber.registerRoute(PLUMBING_NAME, run)

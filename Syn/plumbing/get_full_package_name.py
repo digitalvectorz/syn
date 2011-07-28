@@ -7,6 +7,11 @@ import Syn.log
 PLUMBING_NAME = "synball-pkgfullid"
 
 def run(args):
+	"""
+	Get the package's fullid. Verbosity on logging
+	has been set to super-quiet (Milford Academy mode)
+	so this can be safely used in bash-subcommand syntax.
+	"""
 	Syn.log.VERBOSITY = -1
 	try:
 		if Syn.sh.xists(args[2]):

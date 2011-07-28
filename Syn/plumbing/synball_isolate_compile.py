@@ -10,6 +10,10 @@ import Syn.sh
 PLUMBING_NAME = "synball-isolate-compile"
 
 def run(args):
+	"""
+	Move all sources to a temp location and build there. This helps
+	protect the CWD from dammage during a test build
+	"""
 	try:
 		if not Syn.sh.xists(args[2]):
 			raise KeyError('offset 2')

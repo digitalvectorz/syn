@@ -13,6 +13,12 @@ PLUMBING_NAME = "_nukestrap"
 PREFIX = ""
 
 def run(args):
+	"""
+	@WARNING: DO NOT USE ME.
+	DO NOT USE THIS FUNCTION.
+	**SERIOUSLY**. BABIES WILL DIE, YOUR SYSTEM WILL CRY,
+	AND I'LL FIND YOU, GUY.
+	"""
 	ROOT_PATH = PREFIX + D.DB_ROOT
 	if not Syn.sh.xists(ROOT_PATH):
 		Syn.sh.mkdir(ROOT_PATH)

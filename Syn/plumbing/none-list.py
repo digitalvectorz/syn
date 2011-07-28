@@ -11,6 +11,9 @@ display_blacklist = [
 ]
 
 def run(args):
+	"""
+	None callback, eacho all routes, except the blacklisted ones.
+	"""
 	print "Usage:"
 	print ""
 	print " Function callback table:"

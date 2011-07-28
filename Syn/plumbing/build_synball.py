@@ -7,6 +7,12 @@ import Syn.sh
 PLUMBING_NAME = "synball-compile"
 
 def run(args):
+	"""
+	**Needed argument**: path to a synball
+
+	Compile a Syn sourceball (synball) in the
+	current working directory. 
+	"""
 	try:
 		if Syn.sh.xists(args[2]):
 			Syn.synd.build(args[2])

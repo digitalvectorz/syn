@@ -13,6 +13,9 @@ PLUMBING_NAME = "query-db"
 PREFIX = ""
 
 def run(args):
+	"""
+	Dump everything we know about a package
+	"""
 	ROOT_PATH = PREFIX + D.DB_ROOT
 	if not Syn.sh.xists(ROOT_PATH):
 		Syn.sh.mkdir(ROOT_PATH)

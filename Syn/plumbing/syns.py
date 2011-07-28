@@ -6,6 +6,9 @@ import Syn.plumber
 PLUMBING_NAME = "syns"
 
 def run(args):
+	"""
+	To be honest I forget what this does. Fuck it.
+	"""
 	try:
 		if Syn.sh.xists(args[2]):
 			stb = Syn.source_tarball.source_tarball(args[2])

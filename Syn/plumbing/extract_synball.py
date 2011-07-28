@@ -5,6 +5,9 @@ import Syn.plumber
 PLUMBING_NAME = "synball-extract"
 
 def run(args):
+	"""
+	Extract a synball to the CWD.
+	"""
 	try:
 		if Syn.sh.xists(args[2]):
 			stb = Syn.source_tarball.source_tarball(args[2])
