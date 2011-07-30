@@ -27,8 +27,8 @@ def setAttr(meta, string):
 			except Exception as e:
 				pass
 
-			key   = string[:eq]
-			meta[key] = val
+			key   = str(string[:eq])
+			meta[key] = str(val)
 			return meta
 		except ValueError as e:
 			print "Invalid attr string! Shit!"

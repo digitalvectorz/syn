@@ -1,0 +1,70 @@
+#!/bin/bash
+
+pkg=$1
+
+if [ "x$pkg" == "x" ]; then
+	echo "Need a target..."
+	exit 1
+fi
+
+if [ "x$SYNNAME" == "x" ]; then
+	echo "Oh, dear. I don't know who you are."
+	echo "Read the docs on setting up the devel"
+	echo "env."
+	exit 2
+fi
+
+if [ "x$SYNEMAIL" == "x" ]; then
+	echo "Oh, shucks. I don't have your email."
+	echo "Christ. Read up on the syn docs on"
+	echo "setting up the devel env."
+	exit 3
+fi
+
+echo ""
+echo ""
+echo "Hi there,     : $SYNNAME."
+echo "Your email is : $SYNEMAIL. "
+echo ""
+echo "If this is wrong, please exit and fix your env."
+echo ""
+echo -n "Otherwise, please hit enter :)"
+read FRACK
+
+
+echo "OK. Using package $pkg"
+
+PNAME=$(echo $pkg | awk -F- '{print $1}')
+VERNM=$(basename `echo $pkg | awk -F- '{print $2}'` .tar.gz)
+
+echo "Package resolved as: $PNAME"
+echo -n "Name: [$PNAME]: "
+read PINP
+if [ "x$PINP" != "x" ]; then
+	PNAME=$PINP
+fi
+echo "OK. Using $PNAME."
+
+echo "Version resolved as: $VERNM"
+echo -n "Version: [$VERNM]"
+read VINP
+if [ "x$VINP" != "x" ]; then
+	VERNM=$VINP
+fi
+echo "OK. Using $VERNM"
+
+tld=$PNAME-$VERNM
+
+mkdir $tld
+cd $tld
+mkdir synd
+cd synd
+cp /usr/share/syn/synd-template/* .
+
+
+syn-plumbing metafile-write metapkg "maintainer.name=$SYNNAME"
+syn-plumbing metafile-write metapkg "maintainer.email=$SYNEMAIL"
+
+syn-plumbing metafile-write metapkg "package=$PNAME"
+syn-plumbing metafile-write metapkg "version=$VERNM"
+
