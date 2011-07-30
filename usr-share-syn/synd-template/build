@@ -1,8 +1,3 @@
 #!/usr/bin/make -f
 
-configure:
-	$(S_CONFIGURE) $(S_CONFIGURE_FLAGS)
-build:
-	$(S_BUILD) $(S_BUILD_FLAGS)
-stage:
-	$(S_STAGE) $(S_STAGE_FLAGS)
+include /usr/share/syn/synhelper/syn-build.mk
