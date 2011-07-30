@@ -1,0 +1,6 @@
+#!/bin/bash
+
+syn-clone $1
+cd */synd
+cd ..
+syn-build
