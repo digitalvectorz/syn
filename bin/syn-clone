@@ -26,5 +26,12 @@ FULLPATH=$pkg-$LASTTAG
 echo "Package name should be: $FULLPATH"
 
 mv $pkg $FULLPATH
+cd $FULLPATH
+
+URL=$(syn-plumbing metafile-read ./synd/metapkg wget-url)
+echo "Using the upstream tarball: $URL"
+cd ..
+
+wget $URL
 
 # get the tarball
