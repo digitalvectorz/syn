@@ -162,9 +162,9 @@ def build(synball):
 	Syn.sh.cd(rf)
 	loadEnv()
 
-	runStage("cfg")
-	runStage("build")
-	runStage("stage")
+	print runStage("cfg")
+	print runStage("build")
+	print runStage("stage")
 
 	migrateMetadata()
 	syn = packageBuiltBinaryFolder()
