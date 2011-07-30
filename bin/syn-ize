@@ -60,11 +60,12 @@ cd $tld
 mkdir synd
 cd synd
 cp /usr/share/syn/synd-template/* .
-
-
 syn-plumbing metafile-write metapkg "maintainer.name=$SYNNAME"
 syn-plumbing metafile-write metapkg "maintainer.email=$SYNEMAIL"
-
 syn-plumbing metafile-write metapkg "package=$PNAME"
 syn-plumbing metafile-write metapkg "version=$VERNM"
-
+cd ..
+git init
+git add synd
+git commit -m "Initial auto-import by synize."
+cd ..
