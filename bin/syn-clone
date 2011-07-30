@@ -1,0 +1,30 @@
+#!/bin/bash
+
+pkg=$1
+
+if [ "x$pkg" == "x" ]; then
+	echo "No argument given (need a package)."
+	exit 1
+fi
+
+if [ "x$SYNCLONEROOT" == "x" ]; then
+	echo "You've not set SYNCLONEROOT in your bashrc"
+	echo "or similar. Please fix this."
+	exit 1
+fi
+
+echo "Checking out from: $SYNCLONEROOT"
+echo " Checking out package: $pkg"
+
+git clone $SYNCLONEROOT$pkg.git
+# check $?
+
+cd $pkg
+LASTTAG=$(git tag | tail -n 1 | sed 's/\/.*//g')
+cd ..
+FULLPATH=$pkg-$LASTTAG
+echo "Package name should be: $FULLPATH"
+
+mv $pkg $FULLPATH
+
+# get the tarball
