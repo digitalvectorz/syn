@@ -58,6 +58,19 @@ def meta_read(args):
 	frob = getAttr(meta, args[3])
 	print frob
 
+def meta_write(args):
+	if len(args) < 4:
+		raise Syn.exceptions.SynShittyPlumbingException("Too few arguments")
 
-Syn.plumber.registerRoute("metafile-read", meta_read)
+	f = open(args[2],'r')
+	meta = json.loads(f.read())
+	f.close()
+	mobj = setAttr(meta, args[3])
+	meta = json.dumps(mobj, sort_keys = True, indent = 4)
+	f = open(args[2],'w')
+	f.write(meta)
+
+
+Syn.plumber.registerRoute("metafile-read",  meta_read)
+Syn.plumber.registerRoute("metafile-write", meta_write)
 
