@@ -162,7 +162,7 @@ def build(synball):
 	Syn.sh.cd(rf)
 	loadEnv()
 
-	print runStage("cfg")
+	print runStage("cfg") # XXX: Add in logging and stuff
 	print runStage("build")
 	print runStage("stage")
 

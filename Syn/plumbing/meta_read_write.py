@@ -47,9 +47,13 @@ def getAttr(meta, string):
 	except ValueError as e:
 		return meta[string]
 
-
-
 def meta_read(args):
+	"""
+	Read a metafile!
+	"""
+	kruft = Syn.log.VERBOSITY
+	Syn.log.VERBOSITY = -1
+
 	if len(args) < 4:
 		raise Syn.exceptions.SynShittyPlumbingException("Too few arguments")
 	f = open(args[2], 'r') # XXX: Default this to synd/metapkg
@@ -57,8 +61,12 @@ def meta_read(args):
 	f.close()
 	frob = getAttr(meta, args[3])
 	print frob
+	Syn.log.VERBOSITY = kruft
 
 def meta_write(args):
+	"""
+	Write a metafile!
+	"""
 	if len(args) < 4:
 		raise Syn.exceptions.SynShittyPlumbingException("Too few arguments")
 
@@ -69,7 +77,6 @@ def meta_write(args):
 	meta = json.dumps(mobj, sort_keys = True, indent = 4)
 	f = open(args[2],'w')
 	f.write(meta)
-
 
 Syn.plumber.registerRoute("metafile-read",  meta_read)
 Syn.plumber.registerRoute("metafile-write", meta_write)
