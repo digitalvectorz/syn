@@ -1,9 +1,12 @@
 #!/bin/bash
 
-pkg=$1
+pkg=`basename $1`
+url=$1
+
+wget $url
 
 if [ "x$pkg" == "x" ]; then
-	echo "Need a target..."
+	echo "Need a target URL..."
 	exit 1
 fi
 
@@ -64,6 +67,7 @@ syn-plumbing metafile-write metapkg "maintainer.name=$SYNNAME"
 syn-plumbing metafile-write metapkg "maintainer.email=$SYNEMAIL"
 syn-plumbing metafile-write metapkg "package=$PNAME"
 syn-plumbing metafile-write metapkg "version=$VERNM"
+syn-plumbing metafile-write metapkg "wget-url=$url"
 cd ..
 git init
 git add synd
