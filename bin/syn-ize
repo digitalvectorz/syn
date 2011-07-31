@@ -35,7 +35,7 @@ echo -n "Otherwise, please hit enter :)"
 read FRACK
 
 TARBALL=`basename $url`
-TBALL_BNAME=`./syn-plumbing tarball-tld $TARBALL`
+TBALL_BNAME=`syn-plumbing tarball-tld $TARBALL`
 
 echo "OK. Using package $pkg"
 echo " Source TLD is: $TARBALL"
