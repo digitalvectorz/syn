@@ -20,9 +20,10 @@ git clone $SYNCLONEROOT$pkg.git
 # check $?
 
 cd $pkg
-LASTTAG=$(git tag | tail -n 1 | sed 's/\/.*//g')
+PKGROOT=`syn-plumbing metafile-read ./synd/metapkg package`
+VERID=`syn-plumbing metafile-read ./synd/metapkg version`
 cd ..
-FULLPATH=$pkg-$LASTTAG
+FULLPATH=$PKGROOT-$VERID
 echo "Package name should be: $FULLPATH"
 
 mv $pkg $FULLPATH
