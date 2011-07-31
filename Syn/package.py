@@ -51,6 +51,8 @@ class package:
 		return self.pkgattr.format()[R.DEPS_ATTR]
 	def getStatus(self):
 		return self.pkgattr.format()[R.STAT_ATTR]
+	def getName(self):
+		return self.pkgattr.format()[R.NAME_ATTR]
 	def format(self):
 		return self.pkgattr.format()
 
