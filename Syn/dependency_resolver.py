@@ -4,15 +4,16 @@
 import Syn.exceptions
 
 def resolveDeps(install, pool):
-	staged_packages = install.copy()
+	key2=pool.viewkeys()
+	package_deps=[]
 	for x in install:
-		package_deps = install[x].getDeps()
-		for dep in package_deps:
-			try:
-				staged_packages[dep] = pool[dep]
-			except KeyError as e:
-				raise Syn.exceptions.ArchiveNotFoundException("Can't resolve dep %s" % dep);
-	if install != staged_packages:
-		return resolveDeps(staged_packages, pool)
+		package_deps += install[x].getDeps()
+	has_deps = key2 & package_deps
+	print "has deps",has_deps
+	print "key2",key2
+	print "package_deps",package_deps
+	if(has_deps == set(package_deps)):
+		return has_deps
 	else:
-		return staged_packages
+		raise Syn.exceptions.ArchiveNotFoundException("Can't resolve dep %s" % package_deps);
+
