@@ -9,9 +9,6 @@ def resolveDeps(install, pool):
 	for x in install:
 		package_deps += install[x].getDeps()
 	has_deps = key2 & package_deps
-	print "has deps",has_deps
-	print "key2",key2
-	print "package_deps",package_deps
 	if(has_deps == set(package_deps)):
 		return has_deps
 	else:
