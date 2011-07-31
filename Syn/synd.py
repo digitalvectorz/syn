@@ -48,6 +48,11 @@ def packageSynd():
 	tarball = tarfile.open(FPATH, 'w:gz')
 	tarball.add(package)
 	tarball.close()
+	mf = Syn.json_file.json_file(S.SOURCE_DIRECTORY + "/" + S.METAFILE)
+	dickt = mf.getContent()
+	pkg = dickt['package']
+	ver = dickt['version']
+	fullpath="%s-%s" % (pkg, ver)
 	ret = Syn.source_tarball.source_tarball(FPATH)
 	Syn.sh.cd(package)
 	return ret
