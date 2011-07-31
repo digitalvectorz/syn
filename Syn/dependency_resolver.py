@@ -4,11 +4,13 @@
 import Syn.exceptions
 
 def resolveDeps(install, pool):
-	key2=pool.viewkeys()
+	available_packages=[]
+	for i in pool:
+		available_packages=pool[i].getName()
 	package_deps=[]
 	for x in install:
 		package_deps += install[x].getDeps()
-	has_deps = key2 & package_deps
+	has_deps = set(available_packages) & set(package_deps)
 	if(has_deps == set(package_deps)):
 		return has_deps
 	else:
