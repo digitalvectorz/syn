@@ -40,19 +40,19 @@ def packageSynd():
 	use as a builder. There is only a mild ammount of sanity
 	checking in the source_tarball class that ensures this is OK.
 	"""
-	wdir = Syn.common.getcwd()
-	package = os.path.basename(wdir)
-	Syn.log.l(Syn.log.PEDANTIC,"Found package top-level as: %s" % package)
-	FPATH = package + S.XTN
-	Syn.sh.cd("..")
-	tarball = tarfile.open(FPATH, 'w:gz')
-	tarball.add(package)
-	tarball.close()
 	mf = Syn.json_file.json_file(S.SOURCE_DIRECTORY + "/" + S.METAFILE)
 	dickt = mf.getContent()
 	pkg = dickt['package']
 	ver = dickt['version']
 	fullpath="%s-%s" % (pkg, ver)
+	wdir = Syn.common.getcwd()
+	package = os.path.basename(wdir)
+	Syn.log.l(Syn.log.PEDANTIC,"Found package top-level as: %s" % package)
+	FPATH = fullpath + S.XTN
+	Syn.sh.cd("..")
+	tarball = tarfile.open(FPATH, 'w:gz')
+	tarball.add(package)
+	tarball.close()
 	ret = Syn.source_tarball.source_tarball(FPATH)
 	Syn.sh.cd(package)
 	return ret
