@@ -34,8 +34,12 @@ echo ""
 echo -n "Otherwise, please hit enter :)"
 read FRACK
 
+TARBALL=`basename $url`
+TBALL_BNAME=`./syn-plumbing tarball-tld $TARBALL`
 
 echo "OK. Using package $pkg"
+echo " Source TLD is: $TARBALL"
+echo ""
 
 PNAME=$(echo $pkg | awk -F- '{print $1}')
 VERNM=$(basename `echo $pkg | awk -F- '{print $2}'` .tar.gz)
@@ -56,7 +60,7 @@ if [ "x$VINP" != "x" ]; then
 fi
 echo "OK. Using $VERNM"
 
-tld=$PNAME-$VERNM
+tld=$TBALL_BNAME
 
 mkdir $tld
 cd $tld
