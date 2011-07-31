@@ -20,14 +20,6 @@ git clone $SYNCLONEROOT$pkg.git
 # check $?
 
 cd $pkg
-PKGROOT=`syn-plumbing metafile-read ./synd/metapkg package`
-VERID=`syn-plumbing metafile-read ./synd/metapkg version`
-cd ..
-FULLPATH=$PKGROOT-$VERID
-echo "Package name should be: $FULLPATH"
-
-mv $pkg $FULLPATH
-cd $FULLPATH
 
 URL=$(syn-plumbing metafile-read ./synd/metapkg wget-url)
 echo "Using the upstream tarball: $URL"
@@ -35,4 +27,7 @@ cd ..
 
 wget $URL
 
-# get the tarball
+TARBALL=`basename $URL`
+TBALL_BNAME=`syn-plumbing tarball-tld $TARBALL`
+
+mv $pkg $TBALL_BNAME
