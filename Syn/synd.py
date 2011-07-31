@@ -16,6 +16,14 @@ import tarfile
 import Syn.sh
 import os
 
+def deslash(foo):
+	"""
+	De-slash a directory name
+	"""
+	if foo[-1:] == "/":
+		return deslash(foo[:-1])
+	return foo
+
 def runStage(Stage, syndRoot = "./"):
 	"""
 	runStage allows you to run a "build" file target
@@ -165,7 +173,7 @@ def build(synball):
 
 	tb = Syn.tarball.tarball(upstream_tarball)
 	rf_us = tb.getRootFolder()
-	rf_us = os.path.dirname(rf_us)
+	rf_us = deslash(rf_us)
 	if rf_us != rf:
 		Syn.log.l(Syn.log.CRITICAL,"Fuck, upstream root directory and synd root are not the same. ABORT!")
 		Syn.log.l(Syn.log.CRITICAL," Expected: %s" % rf)
