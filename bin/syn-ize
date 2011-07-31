@@ -5,6 +5,12 @@ url=$1
 
 wget $url
 
+TARBALL=`basename $url`
+TBALL_BNAME=`syn-plumbing tarball-tld $TARBALL`
+echo ""
+echo " Source TLD is: $TBALL_BNAME"
+echo ""
+
 if [ "x$pkg" == "x" ]; then
 	echo "Need a target URL..."
 	exit 1
@@ -34,12 +40,7 @@ echo ""
 echo -n "Otherwise, please hit enter :)"
 read FRACK
 
-TARBALL=`basename $url`
-TBALL_BNAME=`syn-plumbing tarball-tld $TARBALL`
-
 echo "OK. Using package $pkg"
-echo " Source TLD is: $TARBALL"
-echo ""
 
 PNAME=$(echo $pkg | awk -F- '{print $1}')
 VERNM=$(basename `echo $pkg | awk -F- '{print $2}'` .tar.gz)

@@ -4,14 +4,19 @@ PKG=$(basename `pwd`)
 
 echo "Creating package for $PKG"
 
+pkgid=$(syn-plumbing metafile-read ./synd/metapkg package)
+verid=$(syn-plumbing metafile-read ./synd/metapkg version)
+
+FORMALNAME="$pkgid-$verid"
+
 syn-plumbing synball-create
 cd ..
-syn-plumbing synlint-synball $PKG.syn.tar.gz
+syn-plumbing synlint-synball $FORMALNAME.syn.tar.gz
 
-if [ -e $PKG.syn ]; then
+if [ -e $FORMALNAME.syn ]; then
 	echo "Binary already exists. Press enter to remove"
 	read foo
-	rm $PKG.syn
+	rm $FORMALNAME.syn
 fi
 
-syn-plumbing synball-isolate-compile $PKG.syn.tar.gz
+syn-plumbing synball-isolate-compile $FORMALNAME.syn.tar.gz
