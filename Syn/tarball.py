@@ -8,7 +8,7 @@ import os.path
 class tarball:
 	def __init__(self, tarball):
 		self.tarball = tarball
-		self.tarball_target = tarfile.open(tarball, 'r:gz')
+		self.tarball_target = tarfile.open(tarball, 'r')
 		Syn.log.l(Syn.log.VERBOSE, "attempting to load %s" % tarball )
 		self.verify()
 
