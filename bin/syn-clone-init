@@ -1,0 +1,50 @@
+#!/bin/bash
+# GNU GPL-3+, Paul Tagliamonte, 2011
+
+if [ "x$1" == "x" ]; then
+	echo "No argument"
+	exit 1
+fi
+
+pkg=$1
+
+REPOROOT=`echo $SYNCLONEROOT | sed s/:.*//g`
+PATHROOT=`echo $SYNCLONEROOT | sed s/.*://g`
+
+SSHBASE="ssh $REPOROOT "
+
+SEARCH_CMD="if [ -d $PATHROOT/$pkg ]; then echo \"k\"; else echo \"f\"; fi"
+
+FOO=`ssh $REPOROOT "ls $PATHROOT" 2>&1`
+
+if [ $? -ne 0 ]; then
+	echo "Fuck. SSH command sucks"
+	echo "Can't auto-setup repo."
+	exit 1
+fi
+
+echo ""
+echo "OK. We've got a good hostname and such."
+echo ""
+echo " Host: $REPOROOT"
+echo " Root: $PATHROOT"
+echo ""
+
+ID=`ssh $REPOROOT $SEARCH_CMD`
+
+if [ "x$ID" == "xf" ]; then
+	DESCR="$PATHROOT/$pkg.git/description"
+	$SSHBASE "mkdir $PATHROOT/$pkg.git"
+	$SSHBASE "cd $PATHROOT/$pkg.git && git init --bare"
+
+	scp $REPOROOT:$DESCR .
+	vim description
+	echo "Setting description..."
+	scp description $REPOROOT:$DESCR
+	echo "Set as: "
+	$SSHBASE "cat $DESCR"
+	rm description
+else
+	echo "Remote repo already exists"
+	echo "Fuck. Check up on it, please."
+fi
