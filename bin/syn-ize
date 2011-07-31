@@ -72,4 +72,17 @@ cd ..
 git init
 git add synd
 git commit -m "Initial auto-import by synize."
+
+echo ""
+echo "OK. Local directory is set up."
+echo -n "Hit enter to set up default remote repo"
+read frak
+echo ""
+syn-clone-init $PNAME
+
+# Check $?
+
+echo ""
+git remote add origin $SYNCLONEROOT/$PNAME.git 
+git push -u origin master
 cd ..

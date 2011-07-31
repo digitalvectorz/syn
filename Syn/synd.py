@@ -50,8 +50,13 @@ def loadEnv():
 	spawn build targets with the right ENV-vars in place.
 	"""
 	envfile = S.SOURCE_DIRECTORY + "/" + S.ENVFILE
-	env = Syn.json_file.json_file(envfile)
-	envdict = env.getContent()
+	pkginfo = S.SOURCE_DIRECTORY + "/" + S.METAFILE
+
+	env  = Syn.json_file.json_file(envfile)
+	crap = Syn.json_file.json_file(pkginfo)
+
+	envdict  = env.getContent()
+	crapdict = crap.getContent()
 
 	cwd = Syn.common.getcwd()
 	Syn.log.l(Syn.log.PEDANTIC, "ENV CWD: " + cwd)
@@ -61,6 +66,14 @@ def loadEnv():
 
 	Syn.common.putenv(S.DESTDIR,     destdir)
 	Syn.common.putenv(S.BINARY_ROOT, binaryRoot)
+
+	# print crapdict
+
+	pkg = crapdict['package']
+	ver = crapdict['version']
+
+	Syn.common.putenv(S.PACKAGE, pkg)
+	Syn.common.putenv(S.VERSION, ver)
 
 	for x in S.BUILD_ENV_KEYS:
 		try:
@@ -152,6 +165,7 @@ def build(synball):
 
 	tb = Syn.tarball.tarball(upstream_tarball)
 	rf_us = tb.getRootFolder()
+	rf_us = os.path.dirname(rf_us)
 	if rf_us != rf:
 		Syn.log.l(Syn.log.CRITICAL,"Fuck, upstream root directory and synd root are not the same. ABORT!")
 		Syn.log.l(Syn.log.CRITICAL," Expected: %s" % rf)

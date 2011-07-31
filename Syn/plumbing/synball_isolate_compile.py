@@ -45,6 +45,6 @@ def run(args):
 		Syn.sh.mv(binary, cwd)
 		Syn.sh.rmdir(wd)
 	except KeyError as e:
-		raise Syn.exceptions.FileNotPresentException("Fucking asshole. No file.")
+		raise Syn.exceptions.FileNotPresentException("Fucking asshole. No file: %s" % e)
 Syn.plumber.registerRoute(PLUMBING_NAME, run)
 

@@ -32,6 +32,8 @@ STAGE           = "S_STAGE"
 STAGE_FLAGS     = "S_STAGE_FLAGS"
 DESTDIR         = "S_DESTDIR"
 BINARY_ROOT     = "S_BINARY_ROOT"
+PACKAGE         = "S_PACKAGE"
+VERSION         = "S_VERSION"
 
 XTN             = ".syn.tar.gz"
 
