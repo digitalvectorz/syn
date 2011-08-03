@@ -8,4 +8,4 @@ syn_strip_wd:
 	cd $(S_DESTDIR) && syn-helpers-strip
 
 syn_md5sum_wd:
-	cd $(S_DESTDIR) && syn-plumbing md5sum-dir ./ $(MD5SUMFILE)
+	cd $(S_BINARY_ROOT) && syn-plumbing md5sum-dir ./ $(MD5SUMFILE)
