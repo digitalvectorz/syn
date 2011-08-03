@@ -3,6 +3,7 @@
 import Syn.policy.source_package as S
 import Syn.policy.binary_package as B
 import Syn.policy.metafile as M
+import Syn.policy.build as BP
 import Syn.binary_tarball
 import Syn.source_tarball
 import Syn.exceptions
@@ -189,9 +190,8 @@ def build(synball):
 	Syn.sh.cd(rf)
 	loadEnv()
 
-	print runStage("cfg") # XXX: Add in logging and stuff
-	print runStage("build")
-	print runStage("stage")
+	for x in BP.BUILD_PROCESS:
+		print runStage(x) ### XXX: LOGGING, PLEASE
 
 	migrateMetadata()
 	syn = packageBuiltBinaryFolder()
