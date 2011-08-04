@@ -40,8 +40,10 @@ class binary_tarball(Syn.tarball.tarball):
 			except KeyError as e:
 				raise Syn.exceptions.SynFormatException("Bad binary tarball (missing: %s)" % y)
 		
-		print "FUCK ME...>"
-		print Syn.md5sum.md5sumfilematches("meta/filesums", self.md5())
+		if not Syn.md5sum.md5sumfilematches("meta/filesums", self.md5()): # checksum failed
+			Syn.log.l(Syn.log.CRITICAL,"Checksum: Failed!")
+		else:
+			Syn.log.l(Syn.log.VERBOSE,"Checksum: Passed!")
 
 	def upstream_tarball_id(self):
 		"""
