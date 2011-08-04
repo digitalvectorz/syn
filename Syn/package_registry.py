@@ -15,7 +15,6 @@ import Syn.exceptions
 #
 # root
 #  +-> package_name
-#         +-> installed_status : foo
 #         +-> version          : 0.0
 #         +-> local            : 1
 #         +-> deps

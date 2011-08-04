@@ -12,7 +12,3 @@ ifdef S_STRIP_BINARIES
 else
 	@echo "I: Not stripping source"
 endif
-
-syn_md5sum_wd:
-	mkdir $(S_BINARY_ROOT)/$(MD5SUMFOLD)
-	cd $(S_BINARY_ROOT) && syn-plumbing md5sum-dir ./ $(MD5SUMFILE)
