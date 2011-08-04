@@ -16,6 +16,7 @@ import os.path
 import tarfile
 import Syn.sh
 import os
+import Syn.md5sum
 
 def deslash(foo):
 	"""
@@ -152,7 +153,10 @@ def packageBuiltBinaryFolder():
 	popdir = Syn.common.getcwd()
 	Syn.sh.cd(broot) # n-cwd - ./bash-4.1/ 
 
-	bblob = Syn.json_bfile.json_bfile(broot + "/" + S.STAGE_META + "/" + B.METAFILE)
+    # checksum bs
+	Syn.md5sum.makemd5sumfile(".", S.STAGE_META + "/" + B.FILESUMS)
+
+	bblob = Syn.json_bfile.json_bfile("./" + S.STAGE_META + "/" + B.METAFILE)
 	packagedata = bblob.getContent()
 	fullid = "%s-%s" % ( packagedata["package"], packagedata["version"] )
 	tarball = tarfile.open(fullid + B.XTN, 'w:gz')
