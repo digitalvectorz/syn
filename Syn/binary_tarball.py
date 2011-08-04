@@ -7,6 +7,7 @@ import Syn.log
 import Syn.tarball
 import Syn.exceptions
 import Syn.policy.binary_package as B
+import Syn.md5sum
 
 import os.path
 import tarfile
@@ -35,8 +36,14 @@ class binary_tarball(Syn.tarball.tarball):
 				crap = fd.read()
 				if crap != "":
 					Syn.log.l(Syn.log.PEDANTIC,"Exists: %s" % y)
+					
 			except KeyError as e:
 				raise Syn.exceptions.SynFormatException("Bad binary tarball (missing: %s)" % y)
+		
+		if not Syn.md5sum.md5sumfilematches("meta/filesums", self.md5()): # checksum failed
+			Syn.log.l(Syn.log.CRITICAL,"Checksum: Failed!")
+		else:
+			Syn.log.l(Syn.log.VERBOSE,"Checksum: Passed!")
 
 	def upstream_tarball_id(self):
 		"""

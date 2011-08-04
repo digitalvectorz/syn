@@ -42,6 +42,7 @@ class tarball:
 		return filename
 
 	def md5(self):
+		fs = "./meta/filesums"
 		returnme = {}
 		for member in self.tarball_target.getmembers():
 			if member.isdir() == False:
@@ -52,5 +53,7 @@ class tarball:
 					if not hash:
 						break
 					m.update(hash)
-				returnme[member.name] = m.hexdigest()
+				returnme[unicode("./" + member.name)] = unicode(m.hexdigest())
+		if returnme.has_key(fs):
+			del returnme[fs]
 		return returnme

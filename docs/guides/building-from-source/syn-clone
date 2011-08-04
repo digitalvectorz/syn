@@ -1,0 +1,57 @@
+####################################
+# Tutorial:
+#			syn-clone
+####################################
+
+
+#########
+# Step 1:
+## 	In ~/.bashrc, add the line:
+ 		export SYNCLONEROOT="git://pault.ag/syn/"
+
+#########
+# Step 2:
+##	change to your working directory.  For me, it's ~/dev/sandbox/syn/
+		[~]$ cd ~/dev/sandbox/syn
+
+#########
+# Step 3:
+##	clone the desired repo.  In my case, I'm trying to build "sed"
+		[~/dev/sandbox/syn]$ syn-clone sed
+
+#########
+# Step 4:
+##	change to the repo subdir.
+		[~/dev/sandbox/syn]$ ls
+		sed-4.2/	sed-4.2.tar.gz
+	
+		[~/dev/sandbox/syn]$ cd sed-4.2
+
+#########
+# Step 5:
+##	build repo
+## 	* If this step was successful, it will return with no errors and `ls ..` will show two (2) new files, sed-4.2.syn and sed-4.2.syn.tar.gz
+		[~/dev/sandbox/syn/sed-4.2]$ syn-build
+
+
+#########
+# Step 6:
+##	unpack sed-4.2.syn.
+##	* We can unpack this into a new directory or in the parent / working directory should we choose.
+##	** I choose to make a new directory
+		[~/dev/sandbox/syn/sed-4.2]$ cd ..
+		[~/dev/sandbox/syn]$ mkdir temptme; cd $_  # $_ is shorthand for the last argument entered, which in this case would be "temptme"
+		[~/dev/sandbox/syn/temptme]$ tar -zxvf ~/dev/sandbox/syn/sed-4.2.syn
+		#........unpacks meta/ and root/ into this dir
+		[~/dev/sandbox/syn/temptme]$ ls
+		meta/	root/
+	
+#########
+# Step 7:
+##	run our newly installed binary
+		[~/dev/sandbox/syn/temptme]$ sed --version
+		GNU sed version 4.2.1
+		
+		[~/dev/sandbox/syn/temptme]$ ./root/usr/bin/sed --version
+		GNU sed version 4.2
+##	*success.

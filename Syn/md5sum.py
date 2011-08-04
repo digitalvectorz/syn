@@ -1,5 +1,5 @@
 # Copyright 2011 (c) GNU GPL-3+, Ryan Maloney <rpm5779@rit.edu>
-
+from pprint import pprint
 import Syn.json_bfile
 import Syn.bfile
 import hashlib
@@ -20,9 +20,8 @@ def md5sum(path):
 	ret = m.hexdigest()
 	return ret
 
-def md5sumwd(check):
+def md5sumwd(path):
 	ret = {}
-	path = check
 
 	for f in os.listdir(path):
 		if os.path.isdir(path + "/" + f):
@@ -44,9 +43,13 @@ def makemd5sumfile(filepath, file_id):
 	return jbfile
 
 #verifies that a dir and a json_bfile's contents are the same
-def verify(md5file, directory):	
+def verify(md5file, darg):
 	jbf = Syn.json_bfile.json_bfile(md5file)
-	dhash = md5sumwd(directory)
+	dhash = darg
+
+	if not Syn.common.isdict(darg):  # argument passed is NOT of type dict
+		dhash = md5sumwd(darg)
+	
 	d = Syn.common.delt( jbf.getContent(), dhash )
 	return d
 
