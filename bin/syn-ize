@@ -85,7 +85,12 @@ read frak
 echo ""
 syn-clone-init $PNAME
 
-# Check $?
+if [ $? -ne 0 ]; then
+	echo "Ah, your clone init ate shit."
+	echo "Bailing out."
+	echo ""
+	exit 1
+fi
 
 echo ""
 git remote add origin $SYNCLONEROOT/$PNAME.git 
