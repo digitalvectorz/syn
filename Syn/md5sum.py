@@ -50,9 +50,6 @@ def verify(md5file, darg):
 	if not Syn.common.isdict(darg):  # argument passed is NOT of type dict
 		dhash = md5sumwd(darg)
 	
-	print "FUCK MY LIFE>>>>>>>>"
-	pprint( jbf.getContent() )
-	pprint( dhash )
 	d = Syn.common.delt( jbf.getContent(), dhash )
 	return d
 
