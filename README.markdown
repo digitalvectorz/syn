@@ -1,17 +1,23 @@
 Syn Package Manager
 =====================
 
-> Syn, the package manager with a better F/OSS record then GNU Emacs!
+**Syn, the package manager with a better F/OSS record then GNU Emacs!**
 
+Syn's a package manager for a new era. A new era of fast-as-balls computers,
+stupid upstream packaging practices, and automated services doing the grunt
+work.
 
-Hi. This is Syn. Syn's a package manager. It's written in Python, and focused on modern, compact and minimal design. It does what it should, and it gets out of your way. Tons of concepts were shamlessly taken from Debian's dpkg, but with a few modern twists. 
+Syn is a blend of contrast. Simplified yet exposed. Fast yet careful.
 
-Syn is not for people who want something stable and time tested, dpkg is a much better choice for that. Syn's devlopers love building things up from scratch, so feel free to use Syn how you see fit. Syn's flagship Distro, Synnamon, is not yet ready for use. There's a lot to consider. 
+Syn places control in your lap where you want it, and works to save you from
+the stuff you don't.
 
-As always, patches are more then welcome (they're encouraged), and will be rewarded with good tidings from the Developers. If you plan to send a pull request or a format-patch, please rebase and squash all commits into logical chunks.
+Since Syn was designed and given lots of love in the post web2.0-era, we're
+using all sorts of nifty design practices and conventions most would find better
+then the traditional methods of yee olde time.
 
-Syn is GNU GPL Free and Open source. Authors can be found in the AUTHORS file.
+Syn's style is taken very lightly from dpkg, but with some interesting (and 
+sometimes questionable) twists.
 
-To get a full list of all commiters (this is messy):
-
-$ git log | grep Author | sort | uniq | sed s/Author:\ //g
+With love,
+The Synners.
