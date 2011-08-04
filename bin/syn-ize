@@ -68,11 +68,17 @@ cd $tld
 mkdir synd
 cd synd
 cp /usr/share/syn/synd-template/* .
+
+echo "Please enter a short one-sentince description of this package:"
+echo -n "> "
+read DESCR
+
 syn-plumbing metafile-write metapkg "maintainer.name=$SYNNAME"
 syn-plumbing metafile-write metapkg "maintainer.email=$SYNEMAIL"
 syn-plumbing metafile-write metapkg "package=$PNAME"
 syn-plumbing metafile-write metapkg "version=$VERNM"
 syn-plumbing metafile-write metapkg "wget-url=$url"
+syn-plumbing metafile-write metapkg "description=$DESCR"
 cd ..
 git init
 git add synd
