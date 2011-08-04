@@ -2,6 +2,8 @@
 # Ohai!
 #
 
+include /usr/share/syn/synhelper/syn-core.mk
+
 cfg:
 	$(S_CONFIGURE) $(S_CONFIGURE_FLAGS)
 build:
