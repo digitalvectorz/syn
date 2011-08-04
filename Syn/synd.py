@@ -3,6 +3,7 @@
 import Syn.policy.source_package as S
 import Syn.policy.binary_package as B
 import Syn.policy.metafile as M
+import Syn.policy.build as BP
 import Syn.binary_tarball
 import Syn.source_tarball
 import Syn.exceptions
@@ -15,6 +16,7 @@ import os.path
 import tarfile
 import Syn.sh
 import os
+import Syn.md5sum
 
 def deslash(foo):
 	"""
@@ -151,7 +153,10 @@ def packageBuiltBinaryFolder():
 	popdir = Syn.common.getcwd()
 	Syn.sh.cd(broot) # n-cwd - ./bash-4.1/ 
 
-	bblob = Syn.json_bfile.json_bfile(broot + "/" + S.STAGE_META + "/" + B.METAFILE)
+    # checksum bs
+	Syn.md5sum.makemd5sumfile(".", S.STAGE_META + "/" + B.FILESUMS)
+
+	bblob = Syn.json_bfile.json_bfile("./" + S.STAGE_META + "/" + B.METAFILE)
 	packagedata = bblob.getContent()
 	fullid = "%s-%s" % ( packagedata["package"], packagedata["version"] )
 	tarball = tarfile.open(fullid + B.XTN, 'w:gz')
@@ -189,9 +194,8 @@ def build(synball):
 	Syn.sh.cd(rf)
 	loadEnv()
 
-	print runStage("cfg") # XXX: Add in logging and stuff
-	print runStage("build")
-	print runStage("stage")
+	for x in BP.BUILD_PROCESS:
+		print runStage(x) ### XXX: LOGGING, PLEASE
 
 	migrateMetadata()
 	syn = packageBuiltBinaryFolder()

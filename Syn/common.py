@@ -99,6 +99,16 @@ def isdict(f):
 		return True
 	return False
 
+def sortdict(f):
+	"""
+	Sort the arg
+	@arg f: dict object
+	@return: sorted dict map
+	"""
+	keys = f.keys()
+	keys.sort()
+	return map(f.get, keys)
+
 def delt(arg1,arg2):
 	"""
 	Generate a delta between two dicts.
