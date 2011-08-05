@@ -23,6 +23,16 @@ import Syn.exceptions
 #               +-> baz
 #
 
+class crul: 
+	"""
+	Create / Remove / Unlink / Link
+	"""
+	def __init__(self, path=None):
+		if path == None:
+			path = U.SLASH_TOP_LEVEL_DIR
+		path = path + "/" + R.CRULBASE_FILE
+		self.__loaddb(path)
+
 class package_registry:
 	def __init__(self, path=None):
 		if path == None:
