@@ -207,7 +207,7 @@ def build(synball):
 		fd.write(log)
 		if status != 0:
 			# Fuckshit. shit shit shit.
-			raise Syn.exceptions.BuildFailureException("Failed on stage %s" % s)
+			raise Syn.exceptions.BuildFailureException("Failed on stage %s" % x)
 
 	migrateMetadata()
 	syn = packageBuiltBinaryFolder()
