@@ -18,11 +18,13 @@ def run(args):
 	DO NOT USE THIS FUNCTION.
 	**SERIOUSLY**. BABIES WILL DIE, YOUR SYSTEM WILL CRY,
 	AND I'LL FIND YOU, GUY.
+
+	SERIOUSLY
 	"""
-	ROOT_PATH = PREFIX + D.DB_ROOT
+	ROOT_PATH = PREFIX
 	if not Syn.sh.xists(ROOT_PATH):
 		Syn.sh.mkdir(ROOT_PATH)
-	pkgdb = Syn.package_registry.package_registry(ROOT_PATH)
+	Syn.package_registry.do_not_call_me_nukestrap_database_files(path=ROOT_PATH):
 
 Syn.plumber.registerRoute(PLUMBING_NAME, run)
 

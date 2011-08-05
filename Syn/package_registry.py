@@ -25,6 +25,17 @@ import Syn.exceptions
 
 # Someone fix this to user super-classes.
 
+def do_not_call_me_nukestrap_database_files(path=None):
+	if path == None:
+		path = U.SLASH_TOP_LEVEL_DIR
+	db_path = path + "/" + R.DATABASE_FILE
+	lu_path = path + "/" + R.CRULBASE_FILE
+
+	ffdb = flatfile.json_bfile(db_path)
+	ludb = flatfile.json_bfile(lu_path)
+	ffdb.blankFile()
+	ludb.blankFile()
+
 class package_registry():
 	def __init__(self, path=None):
 		if path == None:
