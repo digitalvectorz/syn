@@ -21,10 +21,10 @@ def run(args):
 
 	SERIOUSLY
 	"""
-	ROOT_PATH = PREFIX
+	ROOT_PATH = PREFIX + D.DB_ROOT
 	if not Syn.sh.xists(ROOT_PATH):
 		Syn.sh.mkdir(ROOT_PATH)
-	Syn.package_registry.do_not_call_me_nukestrap_database_files(path=ROOT_PATH):
+	Syn.package_registry.do_not_call_me_nukestrap_database_files(ROOT_PATH)
 
 Syn.plumber.registerRoute(PLUMBING_NAME, run)
 
