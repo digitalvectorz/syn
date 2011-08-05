@@ -50,3 +50,16 @@ class package_registry():
 		except KeyError as e:
 			raise Syn.exceptions.PackageNotFoundException("No such package: %s" % package)
 
+class crul_registry():
+	def __init__(self, path=None):
+		if path == None:
+			path = U.SLASH_TOP_LEVEL_DIR
+		path = path + "/" + R.CRULBASE_FILE
+		self.__loaddb(path)
+	def __loaddb(self, path):
+		try:
+			self.ff = flatfile.json_bfile(path)
+		except IOError as e:
+			l.l(l.CRITICAL,"Database does not exist.")
+			raise Syn.exceptions.SynDirectoryFailure("%s does not exist." % path)
+
