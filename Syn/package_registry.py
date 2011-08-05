@@ -62,4 +62,16 @@ class crul_registry():
 		except IOError as e:
 			l.l(l.CRITICAL,"Database does not exist.")
 			raise Syn.exceptions.SynDirectoryFailure("%s does not exist." % path)
+	def setPackage(self, package, status):
+		if not status in R.STATUS_VALUE:
+			raise Syn.exceptions.SynUnknownStatusException("Fuck all. Unknown status: %s" % status)
+		ShortID = R.STATUS_VALUE[status]
+		cpay = self.ff.getContent()
+		cpay[package] = status
 
+	def getPackage(self, package):
+		try:
+			cpay = self.ff.getContent()
+			return cpay[package]
+		except KeyError as e:
+			raise Syn.exceptions.PackageNotFoundException(e)

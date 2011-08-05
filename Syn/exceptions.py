@@ -9,6 +9,9 @@ class SynException(Exception):
 class SynShittyPlumbingException(SynException):
 	pass
 
+class SynUnknownStatusException(SynException):
+	pass
+
 class SynDirectoryFailure(SynException):
 	pass
 
