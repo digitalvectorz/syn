@@ -32,9 +32,12 @@ def runStage(Stage, syndRoot = "./"):
 	(Stage) on the CWD, from any root (syndRoot).
 	"""
 	bldfile = syndRoot + S.SOURCE_DIRECTORY + "/" + S.BUILDFILE
-	[ status, output ] = Syn.common.run("./" + bldfile + " " + Stage)
+	try:
+		[ status, output ] = Syn.common.run("./" + bldfile + " " + Stage)
+	except KeyboardInterrupt as e:
+		return (-1024, "User terminated stage with control-c.")
 	Syn.log.l(Syn.log.PEDANTIC,"Stage: %s finished with status %s" % (Stage, status))
-	return output
+	return (status, output)
 
 def packageSynd():
 	"""
@@ -197,11 +200,14 @@ def build(synball):
 	fd = open(S.STAGE_LOGS, "w")
 
 	for x in BP.BUILD_PROCESS:
-		log = runStage(x) ### XXX: LOGGING, PLEASE
-		fd.write("============= Stage =============")
-		fd.write(" Build Stage: %s" % x)
-		fd.write("=================================")
+		(status, log) = runStage(x) ### XXX: LOGGING, PLEASE
+		fd.write("============= Stage =============\n")
+		fd.write(" Build Stage: %s\n" % x)
+		fd.write("=================================\n")
 		fd.write(log)
+		if status != 0:
+			# Fuckshit. shit shit shit.
+			raise Syn.exceptions.BuildFailureException("Failed on stage %s" % s)
 
 	migrateMetadata()
 	syn = packageBuiltBinaryFolder()

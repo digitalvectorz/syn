@@ -18,6 +18,8 @@ def run(args):
 			Syn.synd.build(args[2])
 		else:
 			raise Syn.exceptions.SynShittyPlumbingException("Synball does not exist!: %s" % args[2])
+	except Syn.exceptions.BuildFailureException as e:
+		print "Build failure!!!! %s" % e
 	except IndexError as e:
 		raise Syn.exceptions.SynShittyPlumbingException("You forgot an argument!: %s" % str(e))
 
