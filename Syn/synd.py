@@ -153,7 +153,7 @@ def packageBuiltBinaryFolder():
 	popdir = Syn.common.getcwd()
 	Syn.sh.cd(broot) # n-cwd - ./bash-4.1/ 
 
-    # checksum bs
+	# checksum bs
 	Syn.md5sum.makemd5sumfile(".", S.STAGE_META + "/" + B.FILESUMS)
 
 	bblob = Syn.json_bfile.json_bfile("./" + S.STAGE_META + "/" + B.METAFILE)
@@ -194,8 +194,14 @@ def build(synball):
 	Syn.sh.cd(rf)
 	loadEnv()
 
+	fd = open(S.STAGE_LOGS, "w")
+
 	for x in BP.BUILD_PROCESS:
-		print runStage(x) ### XXX: LOGGING, PLEASE
+		log = runStage(x) ### XXX: LOGGING, PLEASE
+		fd.write("============= Stage =============")
+		fd.write(" Build Stage: %s" % x)
+		fd.write("=================================")
+		fd.write(log)
 
 	migrateMetadata()
 	syn = packageBuiltBinaryFolder()

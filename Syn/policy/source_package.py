@@ -37,9 +37,12 @@ VERSION         = "S_VERSION"
 
 XTN             = ".syn.tar.gz"
 
+LOG_DIRECTORY   = "build-logs"
+
 STAGE_ROOT      = "./" + SOURCE_DIRECTORY + "/stage"
 STAGE_FOLD      = "root"
 STAGE_META      = "meta"
+STAGE_LOGS      = "./" + SOURCE_DIRECTORY + "/" + LOG_DIRECTORY
 
 BUILD_ENV_KEYS = [
 	STRIP_BINARIES,
