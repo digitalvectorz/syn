@@ -7,6 +7,7 @@ import Syn.log
 import Syn.tarball
 import Syn.exceptions
 import Syn.policy.binary_package as B
+import Syn.policy.source_package as S
 import Syn.md5sum
 
 import os.path
@@ -40,7 +41,7 @@ class binary_tarball(Syn.tarball.tarball):
 			except KeyError as e:
 				raise Syn.exceptions.SynFormatException("Bad binary tarball (missing: %s)" % y)
 		
-		if not Syn.md5sum.md5sumfilematches("meta/filesums", self.md5()): # checksum failed
+		if not Syn.md5sum.md5sumfilematches(S.STAGE_META + "/" + B.FILESUMS, self.md5()): # checksum failed
 			Syn.log.l(Syn.log.CRITICAL,"Checksum: Failed!")
 		else:
 			Syn.log.l(Syn.log.VERBOSE,"Checksum: Passed!")
