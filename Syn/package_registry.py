@@ -23,17 +23,7 @@ import Syn.exceptions
 #               +-> baz
 #
 
-class crul: 
-	"""
-	Create / Remove / Unlink / Link
-	"""
-	def __init__(self, path=None):
-		if path == None:
-			path = U.SLASH_TOP_LEVEL_DIR
-		path = path + "/" + R.CRULBASE_FILE
-		self.__loaddb(path)
-
-class package_registry:
+class dbskel:
 	def __init__(self, path=None):
 		if path == None:
 			path = U.SLASH_TOP_LEVEL_DIR
@@ -45,6 +35,11 @@ class package_registry:
 		except IOError as e:
 			l.l(l.CRITICAL,"Database does not exist.")
 			raise Syn.exceptions.SynDirectoryFailure("%s does not exist." % path)
+
+class package_registry(dbskel):
+	def __init__(self, path=None):
+		super(path)
+
 	def setPackage(self, package, payload):
 		if payload.val():
 			cpay = self.ff.getContent()
@@ -58,3 +53,9 @@ class package_registry:
 		except KeyError as e:
 			raise Syn.exceptions.PackageNotFoundException("No such package: %s" % package)
 
+class crul(dbskel): 
+	"""
+	Create / Remove / Unlink / Link
+	"""
+	def __init__(self, path=None):
+		super(path)
