@@ -32,8 +32,8 @@ def vercmp(v1, v2):
 	@arg v2: Version string 2
 	@return v1 > v2
 	"""
-	v1 = V(v2)
-	v2 = V(v1)
+	v1 = V(v1)
+	v2 = V(v2)
 	return v1 > v2
 
 def getTempLocation():
