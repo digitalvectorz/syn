@@ -13,9 +13,20 @@ import Syn.exceptions
 routes = {}
 
 def registerRoute(sysid, run):
+	"""
+	Register a route for the plumbing to take when invoked.
+	@arg sysid: the string to call it by
+	@arg run:   the function entry point.
+	"""
 	routes[sysid] = run
 
 def runRoute(sysid, args):
+	"""
+	Run route `sysid`, with payload `args`.
+	This is called from the syn-plumbing script.
+	@arg sysid: ID of the script to invoke
+	@arg args:  arguments to pass to the plumbing.
+	"""
 	try:
 		routes[sysid](args)
 	except KeyError as e:

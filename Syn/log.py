@@ -30,9 +30,18 @@ DEFAULT   = PEDANTIC
 VERBOSITY = DEFAULT
 
 def l(level, msg):
+	"""
+	Log a message to the default logging target.
+	This may be a file, stdout or the network.
+	@param level: How critical the alert is
+	@param msg: message to send to the target
+	"""
 	if level <= VERBOSITY:
 		print "[l] (" + HR_LOGLEVELS[level] + "): " + msg;
 def p(msg):
+	"""
+	Something stupid, I'm sure.
+	"""
 	level = NOTICE
 	if level <= VERBOSITY:
 		print msg

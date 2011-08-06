@@ -18,7 +18,15 @@ import os.path
 import tarfile
 
 class source_tarball(Syn.tarball.tarball):
+	"""
+	Source tarball R/U stuff. We're extending
+	`Syn.tarball.tarball`.
+	"""
 	def verify(self):
+		"""
+		Verify that a tarball is clean. We'll run `Syn.synlint` against
+		it's metafile and a few other tidbits of checking.
+		"""
 		root_bullshit = self.getRootFolder()
 		assert_exists = []
 		for x in S.SOURCE_DIR_REQ_FILES:
@@ -33,16 +41,28 @@ class source_tarball(Syn.tarball.tarball):
 				raise Syn.exceptions.SynFormatException("Bad source tarball")
 
 	def upstream_tarball_id(self):
+		"""
+		Get the upstream tarball's name. We pull this from
+		`wget-url` in the metafile.
+		@return: Tarball name.
+		"""
 		figgleforth = self.get_metablob()
 		return os.path.basename(figgleforth["wget-url"])
 
 	def package_fullid(self):
+		"""
+		Get the package's "Syn-name" (in the format of
+		fluxbox-1.3.1).
+		@return: the package's syn-name.
+		"""
 		figgleforth = self.get_metablob()
 		return os.path.basename(figgleforth["package"] + "-" + figgleforth["version"])
 
 	def packageize(self):
 		"""
-		XXX: Fixme
+		package-ize a Syn-tarball into a package object, for use in the pool
+		or other resolution type tasks.
+		@return a `Syn.package_registry.package_attrs` object
 		"""
 		shit = self.get_metablob()
 		bpatr = Syn.package_registry.package_attrs(
@@ -50,6 +70,12 @@ class source_tarball(Syn.tarball.tarball):
 		return bpatr
 
 	def get_metablob(self):
+		"""
+		Super fancy script to get the metafile's content for use.
+		Most calls that report meta-data (`package_fullid` etc)
+		are wrapped calls and filters on this.
+		@return: super cool metafile dict.
+		"""
 		m = self.readMember(self.getRootFolder() + "/" + S.SOURCE_DIRECTORY + "/" + S.METAFILE)
 		metafile = m.read()
 		figgleforth = json.loads(metafile)

@@ -12,6 +12,14 @@ Resolve dependencies in a super sane way
 import Syn.exceptions
 
 def resolveDeps(install, pool):
+	"""
+	`resolveDeps` resolves dependencies of the `install`
+	param, using the `pool` argument, which contains all
+	packages that we know about.
+	@param install: Package set to install
+	@param pool:    All packages we know about
+	@return: a dict of what needs to be installed
+	"""
 	available_packages=[]
 	for i in pool:
 		available_packages=pool[i].getName()

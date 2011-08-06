@@ -14,12 +14,22 @@ import Syn.policy.goodies as G
 import Syn.common
 
 def get_files( dirpath):
+	"""
+	XXX: Docme!
+	@param dirpath: Explain me!
+	@return: explain me!
+	"""
 	goodie_list=[]
 	for member in os.listdir( dirpath):
 		goodie_list.append(member)
 	return goodie_list
 
 def get_goodies( filepath ):
+	"""
+	XXX: Explain me!
+	@param filepath: explain me!
+	@return: explain me!
+	"""
 	
 	goodie_list=[]
 	if type(filepath) is list:

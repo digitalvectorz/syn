@@ -17,6 +17,10 @@ import os.path
 import exceptions
 
 def md5sum(path):
+	"""
+	XXX: Explain me!
+	@param path: Explain me!
+	"""
 	m = hashlib.md5()
 	try:
 		pfile = file(path,'rb')
@@ -31,6 +35,11 @@ def md5sum(path):
 	return ret
 
 def md5sumwd(path):
+	"""
+	XXX: Explain me!
+	@param path: explain me!
+	@return: explain me
+	"""
 	ret = {}
 
 	for f in os.listdir(path):
@@ -46,6 +55,12 @@ def md5sumwd(path):
 	return ret
 
 def makemd5sumfile(filepath, file_id):
+	"""
+	XXX: Explain me!
+	@param filepath: explain me
+	@param file_id:  explain me
+	@return: explain me
+	"""
 	ret = md5sumwd(filepath)
 	jbfile = Syn.json_bfile.json_bfile(file_id)
 	jbfile.setContent(ret)
@@ -54,6 +69,12 @@ def makemd5sumfile(filepath, file_id):
 
 #verifies that a dir and a json_bfile's contents are the same
 def verify(md5file, darg):
+	"""
+	XXX: Explain me!
+	@param md5file: explain me
+	@param darg: explain me
+	@return: explain me
+	"""
 	jbf = Syn.json_bfile.json_bfile(md5file)
 	dhash = darg
 
@@ -64,6 +85,12 @@ def verify(md5file, darg):
 	return d
 
 def md5sumfilematches(md5file, directory):
+	"""
+	XXX: Explain me!
+	@param md5file: explain me
+	@param directory: explain me
+	@return: explain me
+	"""
 	delt = verify(md5file, directory)
 	return delt == {}
 
