@@ -55,9 +55,12 @@ def install(synball):
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
 			# Direct extraction, klobber.
 			cruldb.setPackage(package['package'], "HALF-INSTALLED")
+
 			maskedExtract(fullpkgpath, dbinf)
+
 			cruldb.setPackage(package['package'], "INSTALLED")
 			pkgdb.setPackage(package['package'], dbinf.packageize())
+
 			pkgdb.write()
 			cruldb.write()
 
