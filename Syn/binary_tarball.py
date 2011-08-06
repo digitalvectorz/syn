@@ -46,8 +46,12 @@ class binary_tarball(Syn.tarball.tarball):
 					
 			except KeyError as e:
 				raise Syn.exceptions.SynFormatException("Bad binary tarball (missing: %s)" % y)
-		self.verifyChecksums()
 
+		errors = self.verifyChecksums()
+		if errors > 0:
+			raise Syn.exceptions.SynFormatException("Bad binary tarball (checksum failures: %s)" % errors)
+		else:
+			Syn.log.l(Syn.log.LOG,"MD5 Checksums Passed!")
 	def verifyChecksums(self):
 		"""
 		Verify the MD5-Sum of all the files in the archive.
@@ -72,6 +76,7 @@ class binary_tarball(Syn.tarball.tarball):
 
 		Syn.sh.cd(popdir)
 		Syn.sh.rmdir(targs)
+		return checksumErrors
 
 	def upstream_tarball_id(self):
 		"""
