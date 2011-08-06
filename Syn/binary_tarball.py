@@ -25,6 +25,7 @@ class binary_tarball(Syn.tarball.tarball):
 	binary tarball. It's interface matches very closely with a
 	`source_tarball`, and provides similar functionality.
 	"""
+
 	def verify(self):
 		"""
 		Verify that the binary tarball is in good working shape,
@@ -52,6 +53,7 @@ class binary_tarball(Syn.tarball.tarball):
 			raise Syn.exceptions.SynFormatException("Bad binary tarball (checksum failures: %s)" % errors)
 		else:
 			Syn.log.l(Syn.log.LOG,"MD5 Checksums Passed!")
+
 	def verifyChecksums(self):
 		"""
 		Verify the MD5-Sum of all the files in the archive.
