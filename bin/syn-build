@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [ -d ./synd ]; then
+	echo "OK. I see a ./synd/";
+else
+	echo "Error! I can't see ./synd/, are you in the right directory?";
+	exit 1
+fi
+
 PKG=$(basename `pwd`)
 
 echo "Creating package for $PKG"
