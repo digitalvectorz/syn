@@ -1,6 +1,7 @@
 #
 
 BUILD_PROCESS = [
+	"syn_patch",
 	"cfg",
 	"build",
 	"stage",

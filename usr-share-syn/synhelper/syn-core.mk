@@ -5,6 +5,9 @@
 MD5SUMFOLD=./meta/
 MD5SUMFILE=$(MD5SUMFOLD)md5sum.mani
 
+syn_patch:
+	syn-helpers-patch
+
 syn_strip_wd:
 ifdef S_STRIP_BINARIES
 	@echo "I: Stripping source"
