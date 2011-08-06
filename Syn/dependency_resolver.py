@@ -1,5 +1,13 @@
-#!/usr/bin/env python
-# Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
+"""
+Resolve dependencies in a super sane way
+
+ @license: GPL-3+
+ @author:  Ryan Maloney <rpm5779@rit.edu>
+ @date:    August 6th, 2011, 01:50 -0000
+ 
+ Use a super awesome algorithm to resolve runtime dependencies
+ and have some fun :)
+"""
 
 import Syn.exceptions
 

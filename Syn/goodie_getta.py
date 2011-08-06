@@ -1,4 +1,13 @@
-# Copyright 2011 (c) GNU GPL-3+, Ryan Maloney <rpm5779@rit.edu>
+"""
+Get a list of all the binaries, libs, conf files and libs that
+a package provides.
+
+ @license: GPL-3+
+ @author:  Ryan Maloney <rpm5779@rit.edu>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ Get loads and loads of goodies. 
+"""
 
 import os.path
 import Syn.policy.goodies as G

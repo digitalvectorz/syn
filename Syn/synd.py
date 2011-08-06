@@ -1,4 +1,12 @@
-# Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
+"""
+Syn directory goodies
+
+ @license: GPL-3+
+ @author:  Paul Tagliamonte <paultag@gmail.com>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ Syn directory shaz
+"""
 
 import Syn.policy.source_package as S
 import Syn.policy.binary_package as B

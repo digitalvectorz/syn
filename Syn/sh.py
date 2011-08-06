@@ -1,9 +1,12 @@
 """
-Simple shell routines and such
+Simple shell stuffs
+
+ @license: GPL-3+
+ @author:  Paul Tagliamonte <paultag@gmail.com>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ It ain't no bash.
 """
-
-# Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
-
 import Syn.log
 
 import os.path

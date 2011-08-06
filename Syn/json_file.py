@@ -1,4 +1,12 @@
-# Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
+"""
+Simple JSON File shaznit.
+
+ @license: GPL-3+
+ @author:  Paul Tagliamonte <paultag@gmail.com>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ Create, Read, Update, Blank a JSON plain-text file. 
+"""
 
 import json
 import Syn.log as l

@@ -1,7 +1,12 @@
 """
-Simple install routines
+Simple install routines 
+
+ @license: GPL-3+
+ @author:  Paul Tagliamonte <paultag@gmail.com>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ Install a binball to the filesystem
 """
-# Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
 
 import Syn.exceptions
 import Syn.policy.db as D

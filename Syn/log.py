@@ -1,7 +1,12 @@
-#
-# Copyright (c) Paul Tagliamonte
-# GNU GPL-3+, 2011
-#
+"""
+Logging made fun
+
+ @license: GPL-3+
+ @author:  Paul Tagliamonte <paultag@gmail.com>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ Handle logging in a sane way
+"""
 
 CRITICAL = 0 # So critical, we disturb the user during sex
 HIGH     = 1 # Ignore anyone in the room to get this message

@@ -1,4 +1,12 @@
-# Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
+"""
+Useful source-package abstractions
+
+ @license: GPL-3+
+ @author:  Paul Tagliamonte <paultag@gmail.com>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ Package abstractions
+"""
 
 import json
 import Syn.log

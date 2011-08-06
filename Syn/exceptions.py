@@ -1,4 +1,13 @@
-# Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
+"""
+Exception classes
+
+ @license: GPL-3+
+ @author:  Paul Tagliamonte <paultag@gmail.com>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ Lots of exceptions that we'll end up throwing later on in the
+ Syn runtime.
+"""
 
 class SynException(Exception):
 	def __init__(self, value):

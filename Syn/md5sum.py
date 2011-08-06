@@ -1,5 +1,15 @@
-# Copyright 2011 (c) GNU GPL-3+, Ryan Maloney <rpm5779@rit.edu>
+"""
+Simple md5sum type stuffs.
+
+ @license: GPL-3+
+ @author:  Ryan Maloney <rpm5779@rit.edu>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ Do MD5-summing
+"""
+
 from pprint import pprint
+
 import Syn.json_bfile
 import Syn.bfile
 import hashlib

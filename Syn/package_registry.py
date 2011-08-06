@@ -1,4 +1,12 @@
-# Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
+"""
+Useful pickle-type stuff
+
+ @license: GPL-3+
+ @author:  Paul Tagliamonte <paultag@gmail.com>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ Uses a json_bfile to store package info
+"""
 
 import Syn.log as l
 import Syn.json_bfile as flatfile

@@ -1,7 +1,13 @@
 """
 Simple binary file module
+
+ @license: GPL-3+
+ @author:  Paul Tagliamonte <paultag@gmail.com>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ This handles reads and writes to gzip compressed files, if the files
+ are large, ior if you know there'll be a bunch of them.
 """
-# Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
 
 import gzip
 import Syn.log as l

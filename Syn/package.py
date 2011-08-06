@@ -1,4 +1,12 @@
-# Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
+"""
+Useful Package abstractions
+
+ @license: GPL-3+
+ @author:  Paul Tagliamonte <paultag@gmail.com>
+ @date:    August 6th, 2011, 01:50 -0000
+
+ Package abstractions
+"""
 
 import Syn.policy.package_registry as R
 import Syn.policy.universal        as U
