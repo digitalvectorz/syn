@@ -39,7 +39,7 @@ def fetchDocsFromDict(dickt):
 	ret = {}
 	for x in dickt:
 		if x[:1] != "_":
-			doc_payload = { x : dickt[x].__doc__ }
+			doc_payload = dickt[x].__doc__
 			if isinstance(dickt[x], FunctionType):
 				ret[x] = {
 					"doc"     : doc_payload,
