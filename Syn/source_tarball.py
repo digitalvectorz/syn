@@ -40,6 +40,15 @@ class source_tarball(Syn.tarball.tarball):
 		figgleforth = self.get_metablob()
 		return os.path.basename(figgleforth["package"] + "-" + figgleforth["version"])
 
+	def packageize(self):
+		"""
+		XXX: Fixme
+		"""
+		shit = self.get_metablob()
+		bpatr = Syn.package_registry.package_attrs(
+			shit['package'], shit['version'], shit['local'], shit['deps'])
+		return bpatr
+
 	def get_metablob(self):
 		m = self.readMember(self.getRootFolder() + "/" + S.SOURCE_DIRECTORY + "/" + S.METAFILE)
 		metafile = m.read()

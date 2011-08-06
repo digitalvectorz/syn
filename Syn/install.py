@@ -25,7 +25,6 @@ def maskedExtract(fullpkgpath, dbinf):
 	Syn.sh.cd(fullpkgpath)
 
 	dbinf.extractall()
-
 	Syn.sh.cd(Interferometric)
 
 
@@ -36,7 +35,8 @@ def install(synball):
 	@arg synball: Syn tarball to install.
 	"""
 	ROOT_PATH = D.DB_ROOT
-	pkgdb = Syn.package_registry.package_registry(ROOT_PATH)
+	pkgdb  = Syn.package_registry.package_registry(ROOT_PATH)
+	cruldb = Syn.package_registry.crul_registry(ROOT_PATH)
 
 	try:
 		dbinf = Syn.binary_tarball.binary_tarball(synball)
@@ -47,13 +47,15 @@ def install(synball):
 		Syn.log.l(Syn.log.VERBOSE,"Package path is: %s" % fullpkgpath)
 
 		try:
-			pkgid = pkgdb.getPackage(package['package'])
+			pkgid = cruldb.getPackage(package['package'])
 			Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
 			# Migrate version upgrade
 		except Syn.exceptions.PackageNotFoundException as e:
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
 			# Direct extraction, klobber.
+			cruldb.setPackage(package['package'], "HALF-INSTALLED")
 			maskedExtract(fullpkgpath, dbinf)
+			cruldb.setPackage(package['package'], "INSTALLED")
 
 	except IndexError as e:
 		raise Syn.exceptions.SynShittyPlumbingException("You forgot an argument!: %s" % str(e))
