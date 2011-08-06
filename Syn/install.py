@@ -50,9 +50,6 @@ def install(synball):
 			pkgid  = cruldb.getPackage(package['package'])
 			pkginf =  pkgdb.getPackage(package['package']).format()
 			Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
-			Syn.log.l(Syn.log.VERBOSE,"Going to have to compare versions and upgrade...")
-			# Migrate version upgrade
-
 			if Syn.common.vercmp(package['version'], pkginf['version']):
 				Syn.log.l(Syn.log.LOG,"OK. The new install is a newer upstream version.")
 			else:
