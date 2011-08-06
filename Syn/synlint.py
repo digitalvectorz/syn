@@ -11,6 +11,11 @@ Policy error checking
 import Syn.policy.metafile
 
 def evaluateMetadict(crap):
+	"""
+	Preform baseline synlint metafile checks on a metadict.
+	@arg crap: Metafile to run through testing.
+	@return: a tupple of counts of errors ( errors, warnings, pendents ).
+	"""
 	errors   = 0
 	warnings = 0
 	pendent  = 0
