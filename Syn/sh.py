@@ -30,6 +30,14 @@ def mkdir(location):
 	Syn.log.l(Syn.log.PEDANTIC, "creating dir " + location)
 	os.makedirs(location)
 
+def ensuredir(location):
+	"""
+	Make a directory, and give some loven.
+	"""
+	if not xists(location):
+		Syn.log.l(Syn.log.PEDANTIC, "creating dir " + location)
+		os.makedirs(location)
+
 def cd(work_dir):
 	"""
 	Change directory to another one.

@@ -12,6 +12,23 @@ import Syn.exceptions
 import Syn.policy.db as D
 import Syn.package_registry
 
+def maskedExtract(fullpkgpath, dbinf):
+	"""
+	Extract shit directly
+	"""
+	ROOT_PATH = D.DB_ROOT
+	fullpkgpath = D.DB_ROOT + fullpkgpath
+	Interferometric = Syn.common.getcwd()
+	Syn.sh.cd(D.DB_ROOT)
+
+	Syn.sh.ensuredir(fullpkgpath)
+	Syn.sh.cd(fullpkgpath)
+
+	dbinf.extractall()
+
+	Syn.sh.cd(Interferometric)
+
+
 def install(synball):
 	"""
 	Install installs a synball to the syn staging area, making sure to
@@ -36,6 +53,7 @@ def install(synball):
 		except Syn.exceptions.PackageNotFoundException as e:
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
 			# Direct extraction, klobber.
+			maskedExtract(fullpkgpath, dbinf)
 
 	except IndexError as e:
 		raise Syn.exceptions.SynShittyPlumbingException("You forgot an argument!: %s" % str(e))
