@@ -49,6 +49,7 @@ def install(synball):
 		try:
 			pkgid = cruldb.getPackage(package['package'])
 			Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
+			Syn.log.l(Syn.log.VERBOSE,"Going to have to compare versions and upgrade...")
 			# Migrate version upgrade
 		except Syn.exceptions.PackageNotFoundException as e:
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
