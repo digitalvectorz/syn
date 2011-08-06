@@ -56,6 +56,9 @@ def install(synball):
 			cruldb.setPackage(package['package'], "HALF-INSTALLED")
 			maskedExtract(fullpkgpath, dbinf)
 			cruldb.setPackage(package['package'], "INSTALLED")
+			pkgdb.setPackage(package['package'], dbinf.packageize())
+			pkgdb.write()
+			cruldb.write()
 
 	except IndexError as e:
 		raise Syn.exceptions.SynShittyPlumbingException("You forgot an argument!: %s" % str(e))

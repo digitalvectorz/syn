@@ -60,6 +60,10 @@ class package_registry():
 		if payload.val():
 			cpay = self.ff.getContent()
 			cpay[package] = payload.format()
+
+	def write(self):
+		self.ff.write()
+
 	def getPackage(self, package):
 		working_db = self.ff.getContent()
 		try:
@@ -87,6 +91,9 @@ class crul_registry():
 		ShortID = R.STATUS_VALUE[status]
 		cpay = self.ff.getContent()
 		cpay[package] = status
+
+	def write(self):
+		self.ff.write()
 
 	def getPackage(self, package):
 		try:

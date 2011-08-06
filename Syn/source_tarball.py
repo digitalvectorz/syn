@@ -46,7 +46,7 @@ class source_tarball(Syn.tarball.tarball):
 		"""
 		shit = self.get_metablob()
 		bpatr = Syn.package_registry.package_attrs(
-			shit['package'], shit['version'], shit['local'], shit['deps'])
+			shit['package'], shit['version'], shit['syn-policy-version'], shit['deps'])
 		return bpatr
 
 	def get_metablob(self):
