@@ -46,11 +46,32 @@ class binary_tarball(Syn.tarball.tarball):
 					
 			except KeyError as e:
 				raise Syn.exceptions.SynFormatException("Bad binary tarball (missing: %s)" % y)
-		
-		if not Syn.md5sum.md5sumfilematches(S.STAGE_META + "/" + B.FILESUMS, self.md5()): # checksum failed
-			Syn.log.l(Syn.log.CRITICAL,"Checksum: Failed!")
-		else:
-			Syn.log.l(Syn.log.VERBOSE,"Checksum: Passed!")
+		self.verifyChecksums()
+
+	def verifyChecksums(self):
+		"""
+		Verify the MD5-Sum of all the files in the archive.
+		"""
+		chk = self.get_filesums()
+		targs = Syn.common.getTempLocation()
+		Syn.log.l(Syn.log.VERBOSE,"Using temp loc: %s" % targs)
+		self.tarball_target.extractall(targs)
+
+		popdir = Syn.common.getcwd()
+		Syn.sh.cd(targs)
+
+		checksumErrors = 0
+
+		for x in chk:
+			md5 = chk[x]
+			if md5 != Syn.md5sum.md5sum(x):
+				checksumErrors = checksumErrors + 1
+				Syn.log.l(Syn.log.CRITICAL,"md5 error!!! -- %s" % x)
+			else:
+				Syn.log.l(Syn.log.PEDANTIC,"   md5 clear -- %s" % x)
+
+		Syn.sh.cd(popdir)
+		Syn.sh.rmdir(targs)
 
 	def upstream_tarball_id(self):
 		"""
@@ -92,6 +113,29 @@ class binary_tarball(Syn.tarball.tarball):
 
 		sbf = Syn.json_bfile.json_bfile(
 			targs + "/" + B.META_ROOT + "/" + B.METAFILE
+		)
+		figgleforth = sbf.getContent()
+
+		Syn.sh.rmdir(targs)
+		return figgleforth
+
+	def get_filesums(self):
+		"""
+		`get_filesums` digests the tarball and loads the JSON filesums
+		so that we can play with it.
+		@return: A dict with the key/values in the filesums file.
+		"""
+		targs = Syn.common.getTempLocation()
+
+		Syn.log.l(Syn.log.VERBOSE,"Using temp loc: %s" % targs)
+
+		self.tarball_target.extract(
+			B.META_ROOT + "/" + B.FILESUMS,
+			targs
+		)
+
+		sbf = Syn.json_bfile.json_bfile(
+			targs + "/" + B.META_ROOT + "/" + B.FILESUMS
 		)
 		figgleforth = sbf.getContent()
 

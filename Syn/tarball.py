@@ -49,20 +49,3 @@ class tarball:
 	def readMember(self, member):
 		filename = self.tarball_target.extractfile(member)
 		return filename
-
-	def md5(self):
-		fs = "./meta/filesums"
-		returnme = {}
-		for member in self.tarball_target.getmembers():
-			if member.isdir() == False:
-				filename = self.readMember(member)
-				m = hashlib.md5()
-				while True:
-					hash = filename.read(1024)
-					if not hash:
-						break
-					m.update(hash)
-				returnme[unicode("./" + member.name)] = unicode(m.hexdigest())
-		if returnme.has_key(fs):
-			del returnme[fs]
-		return returnme
