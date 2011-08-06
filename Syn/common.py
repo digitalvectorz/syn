@@ -10,6 +10,8 @@ Common handling code
 
 """
 
+from distutils.version import LooseVersion as V
+
 import Syn.policy.universal as U
 import Syn.log
 import os.path
@@ -17,6 +19,22 @@ import time
 import os
 
 import commands
+
+def vercmp(v1, v2):
+	"""
+	We can use this to compare v1 to v2. This uses the
+	`distutils.version.LooseVersion` routine to figure out if
+	v1 > v2, so please treat this nicely. This needs a refactor
+	at some point.
+	XXX: Look at homebrewing a system similar to Debian's. I like
+	Debian's.
+	@arg v1: Version string 1
+	@arg v2: Version string 2
+	@return v1 > v2
+	"""
+	v1 = V(v2)
+	v2 = V(v1)
+	return v1 > v2
 
 def getTempLocation():
 	"""

@@ -51,6 +51,16 @@ def install(synball):
 			Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
 			Syn.log.l(Syn.log.VERBOSE,"Going to have to compare versions and upgrade...")
 			# Migrate version upgrade
+
+			if Syn.common.vercmp(package['version'], pkgid['version']):
+				Syn.log.l(Syn.log.LOG,"OK. The new install is a newer upstream version.")
+			else:
+				Syn.log.l(Syn.log.LOG,"Version is not greater. Are they the same?")
+				if Syn.common.vercmp(pkgid['version'], package['version']):
+					Syn.log.l(Syn.log.LOG,"Looks like a downgrade!!!")
+				else:
+					Syn.log.l(Syn.log.LOG,"Versions are the same. Fuckshit. Test local.")
+
 		except Syn.exceptions.PackageNotFoundException as e:
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
 			# Direct extraction, klobber.
