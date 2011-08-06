@@ -72,10 +72,10 @@ class package:
 	of package data when doing dependency stuff.
 	"""
 	def __init__(self, attrs):
-	"""
-	Simple constructor
-	@param attrs: format-dict of attrs.
-	"""
+		"""
+		Simple constructor
+		@param attrs: format-dict of attrs.
+		"""
 		if type(attrs) == dict:
 			attrs = package_attrs(
 				attrs[R.NAME_ATTR],
