@@ -68,9 +68,11 @@ def install(synball):
 			pkgid  = cruldb.getPackage(package['package'])
 			pkginf =  pkgdb.getPackage(package['package']).format()
 			Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
+			# Do conflict catching etc
 			doInstall(pkgdb, cruldb, fullpkgpath, dbinf, package)
 		except Syn.exceptions.PackageNotFoundException as e:
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
+			# Frack yeah.
 			doInstall(pkgdb, cruldb, fullpkgpath, dbinf, package)
 
 	except IndexError as e:
