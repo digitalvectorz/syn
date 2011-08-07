@@ -50,18 +50,18 @@ def install(synball):
 			pkginf =  pkgdb.getPackage(package['package']).format()
 			Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
 			# Do klobber checking
-			cruldb.setPackage(package['package'], "HALF-INSTALLED")
-			maskedExtract(fullpkgpath, dbinf)
-			cruldb.setPackage(package['package'], "INSTALLED")
-			pkgdb.setPackage(package['package'], dbinf.packageize())
-			pkgdb.write()
-			cruldb.write()
 
 		except Syn.exceptions.PackageNotFoundException as e:
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
-			cruldb.setPackage(package['package'], "HALF-INSTALLED")
+			cruldb.setPackage(package['package'], {
+				"status" : "HALF-INSTALLED",
+				"path" : fullpkgpath
+			})
 			maskedExtract(fullpkgpath, dbinf)
-			cruldb.setPackage(package['package'], "INSTALLED")
+			cruldb.setPackage(package['package'], {
+				"status" : "INSTALLED",
+				"path" : fullpkgpath
+			})
 			pkgdb.setPackage(package['package'], dbinf.packageize())
 			pkgdb.write()
 			cruldb.write()
