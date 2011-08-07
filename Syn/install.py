@@ -58,8 +58,9 @@ def install(synball):
 					Syn.log.l(Syn.log.LOG,"Looks like a downgrade!!!")
 				else:
 					Syn.log.l(Syn.log.LOG,"Versions are the same. Test local.")
-					package['local-version']
-					pkginf['local-version']
+					if package['local-version'] == pkginf['local']:
+						Syn.log.l(Syn.log.LOG,"Local versions are the same. Throwing error")
+						raise Syn.exceptions.PackageInstalledException("Package installed: %s" % package['package'])
 
 		except Syn.exceptions.PackageNotFoundException as e:
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
