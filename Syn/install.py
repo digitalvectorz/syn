@@ -57,7 +57,9 @@ def install(synball):
 				if Syn.common.vercmp(pkginf['version'], package['version']):
 					Syn.log.l(Syn.log.LOG,"Looks like a downgrade!!!")
 				else:
-					Syn.log.l(Syn.log.LOG,"Versions are the same. Fuckshit. Test local.")
+					Syn.log.l(Syn.log.LOG,"Versions are the same. Test local.")
+					package['local-version']
+					pkginf['local-version']
 
 		except Syn.exceptions.PackageNotFoundException as e:
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
