@@ -148,9 +148,8 @@ class crul_registry():
 		@arg package: package name.
 		@arg status:  package installed status
 		"""
-		if not status in R.STATUS_VALUE:
+		if not status['status'] in R.STATUS_VALUE:
 			raise Syn.exceptions.SynUnknownStatusException("Fuck all. Unknown status: %s" % status)
-		ShortID = R.STATUS_VALUE[status]
 		cpay = self.ff.getContent()
 		cpay[package] = status
 
