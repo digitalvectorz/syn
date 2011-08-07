@@ -49,16 +49,23 @@ def install(synball):
 			pkgid  = cruldb.getPackage(package['package'])
 			pkginf =  pkgdb.getPackage(package['package']).format()
 			Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
-
-		except Syn.exceptions.PackageNotFoundException as e:
-			Syn.log.l(Syn.log.VERBOSE,"New package install!")
-			# Direct extraction, klobber.
+			# Do klobber checking
 			cruldb.setPackage(package['package'], "HALF-INSTALLED")
 			maskedExtract(fullpkgpath, dbinf)
 			cruldb.setPackage(package['package'], "INSTALLED")
 			pkgdb.setPackage(package['package'], dbinf.packageize())
 			pkgdb.write()
 			cruldb.write()
+
+		except Syn.exceptions.PackageNotFoundException as e:
+			Syn.log.l(Syn.log.VERBOSE,"New package install!")
+			cruldb.setPackage(package['package'], "HALF-INSTALLED")
+			maskedExtract(fullpkgpath, dbinf)
+			cruldb.setPackage(package['package'], "INSTALLED")
+			pkgdb.setPackage(package['package'], dbinf.packageize())
+			pkgdb.write()
+			cruldb.write()
+
 
 	except IndexError as e:
 		raise Syn.exceptions.SynShittyPlumbingException("You forgot an argument!: %s" % str(e))
