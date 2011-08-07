@@ -1,12 +1,23 @@
 """
-Simple binary file module
+Syn's Binary file interface.
 
  @license: GPL-3+
  @author:  Paul Tagliamonte <paultag@gmail.com>
  @date:    August 6th, 2011, 01:50 -0000
 
  This handles reads and writes to gzip compressed files, if the files
- are large, ior if you know there'll be a bunch of them.
+ are large, or if you know there'll be a bunch of them. It sucks for small
+ files, or files you want to maintain deltas against.
+
+ Usage:
+
+ ```
+ import Syn.bfile
+
+ fd = Syn.bfile.bfile("./binary-file")
+ fd.setContent("Hello, World!")
+ fd.write()
+ ```
 """
 
 import gzip

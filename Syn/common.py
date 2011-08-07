@@ -7,7 +7,6 @@ Common handling code
 
  This code contains the common routines used accross the Syn namespace
  that should be abstracted in a nice way.
-
 """
 
 from distutils.version import LooseVersion as V
