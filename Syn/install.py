@@ -27,6 +27,20 @@ def maskedExtract(fullpkgpath, dbinf):
 	dbinf.extractall()
 	Syn.sh.cd(Interferometric)
 
+def doInstall(pkgdb, cruldb, fullpkgpath, dbinf, package):
+	cruldb.setPackage(package['package'], {
+		"status" : "HALF-INSTALLED",
+		"path" : fullpkgpath
+	})
+	maskedExtract(fullpkgpath, dbinf)
+	cruldb.setPackage(package['package'], {
+		"status" : "INSTALLED",
+		"path" : fullpkgpath
+	})
+	pkgdb.setPackage(package['package'], dbinf.packageize())
+	pkgdb.write()
+	cruldb.write()
+
 def install(synball):
 	"""
 	Install installs a synball to the syn staging area, making sure to
@@ -50,21 +64,11 @@ def install(synball):
 			pkginf =  pkgdb.getPackage(package['package']).format()
 			Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
 			# Do klobber checking
+			doInstall(pkgdb, cruldb, fullpkgpath, dbinf, package)
 
 		except Syn.exceptions.PackageNotFoundException as e:
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
-			cruldb.setPackage(package['package'], {
-				"status" : "HALF-INSTALLED",
-				"path" : fullpkgpath
-			})
-			maskedExtract(fullpkgpath, dbinf)
-			cruldb.setPackage(package['package'], {
-				"status" : "INSTALLED",
-				"path" : fullpkgpath
-			})
-			pkgdb.setPackage(package['package'], dbinf.packageize())
-			pkgdb.write()
-			cruldb.write()
+			doInstall(pkgdb, cruldb, fullpkgpath, dbinf, package)
 
 
 	except IndexError as e:
