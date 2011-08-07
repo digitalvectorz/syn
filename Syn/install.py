@@ -27,7 +27,6 @@ def maskedExtract(fullpkgpath, dbinf):
 	dbinf.extractall()
 	Syn.sh.cd(Interferometric)
 
-
 def install(synball):
 	"""
 	Install installs a synball to the syn staging area, making sure to
@@ -42,7 +41,7 @@ def install(synball):
 		dbinf = Syn.binary_tarball.binary_tarball(synball)
 		package = dbinf.get_metablob()
 		Syn.log.l(Syn.log.VERBOSE,"Package is name: %s" % package['package'])
-		fullpkgpath = "/" + package['package'][0] + "/" + package['package']
+		fullpkgpath = "/" + package['package'][0] + "/" + package['package'] + "/" + package['version'] + "/" + str(package['local-version'])
 
 		Syn.log.l(Syn.log.VERBOSE,"Package path is: %s" % fullpkgpath)
 
@@ -50,28 +49,14 @@ def install(synball):
 			pkgid  = cruldb.getPackage(package['package'])
 			pkginf =  pkgdb.getPackage(package['package']).format()
 			Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
-			if Syn.common.vercmp(package['version'], pkginf['version']):
-				Syn.log.l(Syn.log.LOG,"OK. The new install is a newer upstream version.")
-			else:
-				Syn.log.l(Syn.log.LOG,"Version is not greater. Are they the same?")
-				if Syn.common.vercmp(pkginf['version'], package['version']):
-					Syn.log.l(Syn.log.LOG,"Looks like a downgrade!!!")
-				else:
-					Syn.log.l(Syn.log.LOG,"Versions are the same. Test local.")
-					if package['local-version'] == pkginf['local']:
-						Syn.log.l(Syn.log.LOG,"Local versions are the same. Throwing error")
-						raise Syn.exceptions.PackageInstalledException("Package installed: %s" % package['package'])
 
 		except Syn.exceptions.PackageNotFoundException as e:
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
 			# Direct extraction, klobber.
 			cruldb.setPackage(package['package'], "HALF-INSTALLED")
-
 			maskedExtract(fullpkgpath, dbinf)
-
 			cruldb.setPackage(package['package'], "INSTALLED")
 			pkgdb.setPackage(package['package'], dbinf.packageize())
-
 			pkgdb.write()
 			cruldb.write()
 
