@@ -28,6 +28,11 @@ def maskedExtract(fullpkgpath, dbinf):
 	Syn.sh.cd(Interferometric)
 
 def doInstall(pkgdb, cruldb, fullpkgpath, dbinf, package):
+	"""
+	Do the m'fn' install
+	XXX: Document me
+	@warning: this may fuck stuff up seriously if used directly.
+	"""
 	cruldb.setPackage(package['package'], {
 		"status" : "HALF-INSTALLED",
 		"path" : fullpkgpath
@@ -63,13 +68,10 @@ def install(synball):
 			pkgid  = cruldb.getPackage(package['package'])
 			pkginf =  pkgdb.getPackage(package['package']).format()
 			Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
-			# Do klobber checking
 			doInstall(pkgdb, cruldb, fullpkgpath, dbinf, package)
-
 		except Syn.exceptions.PackageNotFoundException as e:
 			Syn.log.l(Syn.log.VERBOSE,"New package install!")
 			doInstall(pkgdb, cruldb, fullpkgpath, dbinf, package)
-
 
 	except IndexError as e:
 		raise Syn.exceptions.SynShittyPlumbingException("You forgot an argument!: %s" % str(e))
