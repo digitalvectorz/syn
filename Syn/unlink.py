@@ -41,8 +41,30 @@ def unlink(packageid):
 		for t in tree:
 			supercool[t[1:]] = os.path.abspath(t)
 
+		crul = cruldb.getPackage(packageid)
+		crul_status = crul['status']
+		crul_path   = crul['path']
+
+		if crul_status != "LINKED":
+			raise Syn.exceptions.PackageNotinstalledException("Package not linked! -- " + packageid)
+		else:
+			Syn.log.l(Syn.log.PEDANTIC,"Package linked. unlinking.")
+
+		cruldb.setPackage(packageid, {
+			"status" : "HALF-LINKED",
+			"path"   : crul_path
+		})
+		cruldb.write()
+
 		for s in supercool:
 			Syn.sh.rm(supercool[s])
+
+		cruldb.setPackage(packageid, {
+			"status" : "INSTALLED",
+			"path"   : crul_path
+		})
+		cruldb.write()
+
 
 		Syn.sh.cd(popdir)
 	except Syn.exceptions.PackageNotFoundException as e:
