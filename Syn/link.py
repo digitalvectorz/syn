@@ -42,7 +42,7 @@ def link(packageid):
 			supercool[t[1:]] = os.path.abspath(t)
 
 		for s in supercool:
-			print s, supercool[s]
+			Syn.sh.ln(supercool[s], s)
 
 		Syn.sh.cd(popdir)
 	except Syn.exceptions.PackageNotFoundException as e:
