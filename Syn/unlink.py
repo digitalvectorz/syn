@@ -57,7 +57,8 @@ def unlink(packageid):
 		cruldb.write()
 
 		for s in supercool:
-			Syn.sh.rm(supercool[s])
+			Syn.log.l(Syn.log.PEDANTIC,"Removing: %s" % s)
+			Syn.sh.rm(s)
 
 		cruldb.setPackage(packageid, {
 			"status" : "INSTALLED",

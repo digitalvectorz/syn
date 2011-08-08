@@ -56,6 +56,8 @@ def link(packageid):
 		})
 		cruldb.write()
 		for s in supercool:
+			Syn.log.l(Syn.log.PEDANTIC,"Linking: %s to point to %s" % (s, supercool[s]))
+			# source, link_name
 			Syn.sh.ln(supercool[s], s)
 
 		cruldb.setPackage(packageid, {
