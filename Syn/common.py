@@ -35,6 +35,18 @@ def vercmp(v1, v2):
 	v2 = V(v2)
 	return v1 > v2
 
+def getDirectoryTree(path="."):
+	ret = []
+	for f in os.listdir(path):
+		if os.path.isdir(path + "/" + f):
+			biogenic = getDirectoryTree(path + "/" + f)
+			for x in biogenic:
+				ret.append(x)
+		else:
+			ret.append(path + "/" + f)
+	return ret
+
+
 def getTempLocation():
 	"""
 	`getTempLocation` gets a location to play with in the filesystem,

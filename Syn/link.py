@@ -8,8 +8,10 @@ Simple link routines
  Link a package into the filesystem
 """
 
+import os.path
 import Syn.exceptions
 import Syn.policy.db as D
+import Syn.policy.binary_package as B
 import Syn.package_registry
 
 def link(packageid):
@@ -27,8 +29,22 @@ def link(packageid):
 		pkgid  = cruldb.getPackage(packageid)
 		pkginf =  pkgdb.getPackage(packageid).format()
 		Syn.log.l(Syn.log.PEDANTIC,"Package DB Dump: %s" % pkgid)
-		# Do conflict catching etc
+		package_root = pkgid['path']
+		popdir = Syn.common.getcwd()
+		Syn.sh.cd(ROOT_PATH + package_root)
+		Syn.sh.cd("./" + B.FS_ROOT)
 
+		tree = Syn.common.getDirectoryTree()
+
+		supercool = {}
+
+		for t in tree:
+			supercool[t[1:]] = os.path.abspath(t)
+
+		for s in supercool:
+			print s, supercool[s]
+
+		Syn.sh.cd(popdir)
 	except Syn.exceptions.PackageNotFoundException as e:
 		Syn.log.l(Syn.log.VERBOSE,"Shit. No package found. Passing exception up")
 		raise e
