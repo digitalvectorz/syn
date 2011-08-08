@@ -36,6 +36,9 @@ def vercmp(v1, v2):
 	return v1 > v2
 
 def getDirectoryTree(path="."):
+	"""
+	XXX: Document me
+	"""
 	ret = []
 	for f in os.listdir(path):
 		if os.path.isdir(path + "/" + f):

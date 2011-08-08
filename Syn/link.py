@@ -41,8 +41,28 @@ def link(packageid):
 		for t in tree:
 			supercool[t[1:]] = os.path.abspath(t)
 
+		crul = cruldb.getPackage(packageid)
+		crul_status = crul['status']
+		crul_path   = crul['path']
+
+		if crul_status != "INSTALLED":
+			raise Syn.exceptions.PackageNotinstalledException("Package not installed! -- " + packageid)
+		else:
+			Syn.log.l(Syn.log.PEDANTIC,"Package installed. Linking.")
+
+		cruldb.setPackage(packageid, {
+			"status" : "HALF-LINKED",
+			"path"   : crul_path
+		})
+		cruldb.write()
 		for s in supercool:
 			Syn.sh.ln(supercool[s], s)
+
+		cruldb.setPackage(packageid, {
+			"status" : "LINKED",
+			"path"   : crul_path
+		})
+		cruldb.write()
 
 		Syn.sh.cd(popdir)
 	except Syn.exceptions.PackageNotFoundException as e:
