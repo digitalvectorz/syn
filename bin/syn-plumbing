@@ -1,12 +1,23 @@
 #!/usr/bin/env python
 # Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
 
+import Syn.policy.chroot as C
 import Syn.exceptions
 import Syn.plumbing
 import Syn.plumber
+import Syn.common
 import Syn.log
 
 import sys
+
+try:
+	chrootski = Syn.common.getenv("SYNCHROOT")
+	Syn.policy.db.DB_ROOT = chrootski + Syn.policy.db.DB_ROOT
+	C.CHROOT = chrootski
+	Syn.log.l(Syn.log.PEDANTIC,
+		"Using modified chroot %s" % Syn.policy.db.DB_ROOT )
+except KeyError as e:
+	pass
 
 argstack = sys.argv
 
