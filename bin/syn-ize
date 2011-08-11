@@ -79,6 +79,9 @@ syn-plumbing metafile-write metapkg "package=$PNAME"
 syn-plumbing metafile-write metapkg "version=$VERNM"
 syn-plumbing metafile-write metapkg "wget-url=$url"
 syn-plumbing metafile-write metapkg "description=$DESCR"
+syn-plumbing metafile-write metapkg "syn-vcs.type=git" 
+syn-plumbing metafile-write metapkg "syn-vcs.url=$SYNCLONEROOT"
+
 cd ..
 git init
 git add synd
