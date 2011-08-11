@@ -12,6 +12,7 @@ import os.path
 import Syn.exceptions
 import Syn.policy.db as D
 import Syn.policy.binary_package as B
+import Syn.policy.chroot as C
 import Syn.package_registry
 
 def unlink(packageid):
@@ -58,7 +59,7 @@ def unlink(packageid):
 
 		for s in supercool:
 			Syn.log.l(Syn.log.PEDANTIC,"Removing: %s" % s)
-			Syn.sh.rm(s)
+			Syn.sh.rm(C.CHROOT + s)
 
 		cruldb.setPackage(packageid, {
 			"status" : "INSTALLED",

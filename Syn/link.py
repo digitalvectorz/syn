@@ -12,7 +12,10 @@ import os.path
 import Syn.exceptions
 import Syn.policy.db as D
 import Syn.policy.binary_package as B
+import Syn.policy.chroot as C
 import Syn.package_registry
+
+# XXX: Fix these imports
 
 def link(packageid):
 	"""
@@ -39,7 +42,11 @@ def link(packageid):
 		supercool = {}
 
 		for t in tree:
-			supercool[t[1:]] = os.path.abspath(t)
+			if C.CHROOT != "":
+				supercool[t[1:]] = "/" + os.path.abspath(t)[len(C.CHROOT):]
+				# Reset the symlink. Fuck this hack.
+			else:
+				supercool[t[1:]] = os.path.abspath(t)
 
 		crul = cruldb.getPackage(packageid)
 		crul_status = crul['status']
@@ -58,7 +65,7 @@ def link(packageid):
 		for s in supercool:
 			Syn.log.l(Syn.log.PEDANTIC,"Linking: %s to point to %s" % (s, supercool[s]))
 			# source, link_name
-			Syn.sh.ln(supercool[s], s)
+			Syn.sh.ln(supercool[s], C.CHROOT + s)
 
 		cruldb.setPackage(packageid, {
 			"status" : "LINKED",
