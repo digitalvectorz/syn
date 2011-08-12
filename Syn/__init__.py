@@ -9,4 +9,4 @@ Syn base package stuffs
 """
 
 __appname__ = "Syn"
-__version__ = "3.0~alpha2"
+__version__ = "3.0~alpha3"
