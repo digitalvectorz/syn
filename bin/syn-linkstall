@@ -1,0 +1,6 @@
+#!/bin/bash
+
+PKG=`basename $1 .syn | sed s/-.*//g`
+
+syn-plumbing install-package $1
+syn-plumbing link-package $PKG
