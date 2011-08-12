@@ -15,3 +15,8 @@ ifdef S_STRIP_BINARIES
 else
 	@echo "I: Not stripping source"
 endif
+
+syn_remove_blacklist:
+	@echo "I: Removing blacklisted shaz."
+	cd $(S_DESTDIR) && \
+		rm -rf $(shell syn-plumbing get-build-blacklist)

@@ -10,5 +10,6 @@ BUILD_PROCESS = [
 	"cfg",
 	"build",
 	"stage",
-	"syn_strip_wd"
+	"syn_remove_blacklist",
+	"syn_strip_wd",
 ]
