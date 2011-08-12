@@ -11,11 +11,15 @@ import Syn.log
 import sys
 
 try:
+	p = Syn.log.VERBOSITY
+	Syn.log.VERBOSITY = -1
+
 	chrootski = Syn.common.getenv("SYNCHROOT")
 	Syn.policy.db.DB_ROOT = chrootski + Syn.policy.db.DB_ROOT
 	C.CHROOT = chrootski
 	Syn.log.l(Syn.log.PEDANTIC,
 		"Using modified chroot %s" % Syn.policy.db.DB_ROOT )
+	Syn.log.VERBOSITY = p
 except KeyError as e:
 	pass
 
