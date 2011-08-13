@@ -39,3 +39,53 @@ but you'll be more likely to get features you ask for :)
  5) Please add lots of (meaningful) comments.
 
  6) Have a goddamn sense of humor.
+
+Need help with Git?
+===================
+
+ Read up on it. We're not going to put a git howto in here.
+
+ However, here are some handy snippits for setting up a working development
+ enviroment.
+
+ 1) Please work in your own little branch. It makes it easy to ensure code
+    is rebased as well as it can be.
+
+ git branch dev
+ git checkout dev
+
+ 2) It's useful to set up a remote to our published branch.
+
+ git remote add mainline git://github.com/whube/syn.git
+
+ 3) Before sending in a pull request, please update your master.
+    Some would disagree with this, since it causes the remote branch to 
+    go batshit crazy, but it's OK since no one should be using your development
+    branch and repo for anything meaningful. 
+
+ git checkout master
+ git pull mainline master
+ git checkout dev
+ git rebase dev master
+ git push --force
+
+    This lets us merge without an ugly "merge" commit. Please please PLEASE
+    rebase pull requests.
+
+ 4) Can't send a pull request (no github account for F/OSS or idological
+    reasons? ) Well that's fine. You can send us a format-patch sent to
+    developers@whube.com . Since it's such an odd case and they're very
+    bulky, please squash all your commits into one patch.
+
+ git checkout master
+ git pull mainline master
+ git checkout dev
+ # ENSURE YOU'RE UP TO DATE WITH COMMITS!
+ git clean -fdx
+ git reset master
+ git add --all
+ git commit
+ # Describe the changes in a few lines (be sure to do it
+ # totally and completely )
+ git format-patch master
+ # Email us the 0001* file :)
