@@ -21,7 +21,7 @@ try:
 		"Using modified chroot %s" % Syn.policy.db.DB_ROOT )
 	Syn.log.VERBOSITY = p
 except KeyError as e:
-	pass
+	Syn.log.VERBOSITY = p
 
 argstack = sys.argv
 
