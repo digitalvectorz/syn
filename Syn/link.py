@@ -42,8 +42,8 @@ def link(packageid):
 		supercool = {}
 
 		for t in tree:
-			if C.CHROOT != "":
-				supercool[t[1:]] = "/" + os.path.abspath(t)[len(C.CHROOT):]
+			if C.CHROOT != None:
+				supercool[t[1:]] = os.path.abspath(t)[len(C.CHROOT):]
 				# Reset the symlink. Fuck this hack.
 			else:
 				supercool[t[1:]] = os.path.abspath(t)
