@@ -33,7 +33,7 @@ usrshare = fucking_recusion_how_does_it_work_not_here()
 setup(
 	name       = __appname__,
 	version    = __version__,
-	packages   = [ 'Syn', 'Syn.policy', 'Syn.plumbing' ],
+	packages   = [ 'Syn', 'Syn.Policy', 'Syn.Plumbing' ],
 	data_files = usrshare,
 	scripts    = dirls('bin')
 )

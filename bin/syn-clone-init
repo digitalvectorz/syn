@@ -38,7 +38,7 @@ if [ "x$ID" == "xf" ]; then
 	$SSHBASE "cd $PATHROOT/$pkg.git && git init --bare"
 
 	scp $REPOROOT:$DESCR .
-	echo "Syn package '$pkg' maintainer repo." 
+	echo "Syn.Package '$pkg' maintainer repo." 
 	scp description $REPOROOT:$DESCR
 	echo "Set as: "
 	$SSHBASE "cat $DESCR"

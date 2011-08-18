@@ -1,34 +1,34 @@
 #!/usr/bin/env python
 # Copyright 2011 (c) GNU GPL-3+, Paul Tagliamonte <paultag@gmail.com>
 
-import Syn.policy.chroot as C
-import Syn.exceptions
-import Syn.plumbing
-import Syn.plumber
-import Syn.common
-import Syn.log
+import Syn.Policy.Chroot as C
+import Syn.Exceptions
+import Syn.Plumbing
+import Syn.Plumber
+import Syn.Common
+import Syn.Log
 
 import sys
 
 try:
-	p = Syn.log.VERBOSITY
-	Syn.log.VERBOSITY = -1
+	p = Syn.Log.VERBOSITY
+	Syn.Log.VERBOSITY = -1
 
-	chrootski = Syn.common.getenv("SYNCHROOT")
-	Syn.policy.db.DB_ROOT = chrootski + Syn.policy.db.DB_ROOT
+	chrootski = Syn.Common.getenv("SYNCHROOT")
+	Syn.Policy.Db.DB_ROOT = chrootski + Syn.Policy.Db.DB_ROOT
 	C.CHROOT = chrootski
-	Syn.log.l(Syn.log.PEDANTIC,
-		"Using modified chroot %s" % Syn.policy.db.DB_ROOT )
-	Syn.log.VERBOSITY = p
+	Syn.Log.l(Syn.Log.PEDANTIC,
+		"Using modified chroot %s" % Syn.Policy.Db.DB_ROOT )
+	Syn.Log.VERBOSITY = p
 except KeyError as e:
-	Syn.log.VERBOSITY = p
+	Syn.Log.VERBOSITY = p
 
 argstack = sys.argv
 
 if len(argstack) <= 1:
 	argstack.append(None)
 try:
-	Syn.plumber.runRoute(argstack[1], argstack)
-except Syn.exceptions.SynException as e:
+	Syn.Plumber.runRoute(argstack[1], argstack)
+except Syn.Exceptions.SynException as e:
 	print str(e)
 	sys.exit(1)
