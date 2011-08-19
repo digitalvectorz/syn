@@ -62,10 +62,10 @@ class SourceTarball(Syn.Tarball.Tarball):
 		"""
 		package-ize a Syn.Tarball into a package object, for use in the pool
 		or other resolution type tasks.
-		@return a `Syn.PackageRegistry.package_attrs` object
+		@return a `Syn.PackageRegistry.PackageAttrs` object
 		"""
 		shit = self.getMetablob()
-		bpatr = Syn.PackageRegistry.package_attrs(
+		bpatr = Syn.PackageRegistry.PackageAttrs(
 			shit['package'], shit['version'], shit['syn-policy-version'], shit['deps'])
 		return bpatr
 

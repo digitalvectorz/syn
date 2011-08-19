@@ -21,7 +21,7 @@ but you'll be more likely to get features you ask for :)
         tab char per line is much less then 4 or 8 per. We know this is a 
         silly reason, but it's a nice way to rationalize it.
 
- 2) Use `Syn.policy` for any constants you might need in more then one
+ 2) Use `Syn.Policy` for any constants you might need in more then one
     module.
 
  3) Please __doc__ all your functions. We have some cool flags you can use

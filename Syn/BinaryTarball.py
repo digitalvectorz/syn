@@ -116,7 +116,7 @@ class BinaryTarball(Syn.Tarball.Tarball):
 		XXX: Fixme
 		"""
 		shit = self.getMetablob()
-		bpatr = Syn.PackageRegistry.package_attrs(
+		bpatr = Syn.PackageRegistry.PackageAttrs(
 			shit['package'], shit['version'], shit['local-version'], shit['deps'])
 		return bpatr
 

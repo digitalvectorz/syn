@@ -13,11 +13,11 @@ class dependencyTestCase(unittest.TestCase):
 	def testDependency(self):
 		v = "1"
 
-		A = Syn.Package.package(Syn.Package.package_attrs("A", v, v, ["B", "C"]))
-		B = Syn.Package.package(Syn.Package.package_attrs("B", v, v, ["C"]))
-		C = Syn.Package.package(Syn.Package.package_attrs("C", v, v, ["A", "B"]))
-		D = Syn.Package.package(Syn.Package.package_attrs("D", v, v, ["A"]))
-		E = Syn.Package.package(Syn.Package.package_attrs("D", v, v, ["A", "V"]))
+		A = Syn.Package.Package(Syn.Package.PackageAttrs("A", v, v, ["B", "C"]))
+		B = Syn.Package.Package(Syn.Package.PackageAttrs("B", v, v, ["C"]))
+		C = Syn.Package.Package(Syn.Package.PackageAttrs("C", v, v, ["A", "B"]))
+		D = Syn.Package.Package(Syn.Package.PackageAttrs("D", v, v, ["A"]))
+		E = Syn.Package.Package(Syn.Package.PackageAttrs("D", v, v, ["A", "V"]))
 
 		INSTALLED_LIST  = { "A" : A, "B" : B, "C" : C }
 		TO_INSTALL      = { "D" : D    }

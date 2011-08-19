@@ -12,7 +12,7 @@
 #    usr...
 #    etc...
 
-import Syn.policy.source_package as S
+import Syn.Policy.SourcePackage as S
 
 TOP_LEVEL_DIR = "syn"
 FILESUMS      = "filesums"

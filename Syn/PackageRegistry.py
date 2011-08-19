@@ -14,7 +14,7 @@ import Syn.JsonBfile as flatfile
 import Syn.Policy.PackageRegistry as R
 import Syn.Policy.Universal        as U
 
-from Syn.Package import package_attrs
+from Syn.Package import PackageAttrs
 
 import Syn.Package
 
@@ -108,7 +108,7 @@ class PackageRegistry():
 		working_db = self.ff.getContent()
 		try:
 			pkg_data = working_db[package]
-			ret = Syn.Package.package(pkg_data)
+			ret = Syn.Package.Package(pkg_data)
 			return ret
 		except KeyError as e:
 			raise Syn.Exceptions.PackageNotFoundException("No such package: %s" % package)

@@ -12,7 +12,7 @@ import Syn.Policy.PackageRegistry as R
 import Syn.Policy.Universal        as U
 import Syn.Exceptions
 
-class package_attrs:
+class PackageAttrs:
 	"""
 	Package attribute object stuff. This stores
 	the following data in a sane way:
@@ -77,7 +77,7 @@ class package:
 		@param attrs: format-dict of attrs.
 		"""
 		if type(attrs) == dict:
-			attrs = package_attrs(
+			attrs = PackageAttrs(
 				attrs[R.NAME_ATTR],
 				attrs[R.VERS_ATTR],
 				attrs[R.LOCL_ATTR],
