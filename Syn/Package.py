@@ -66,7 +66,7 @@ class PackageAttrs:
 			R.LOCL_ATTR : self._vlocal
 		}
 		return ret
-class package:
+class Package:
 	"""
 	Package class, we use this to abstract all sorts
 	of package data when doing dependency stuff.
